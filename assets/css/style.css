@@ -1,0 +1,45 @@
+:root{
+    --color-kdoubleu:lightblue;
+    --color-hover:blue;
+    --color-hover:blue;
+    --color-hover:blue;
+    --color-hover:blue;
+    --color-hover:blue;
+}
+
+
+
+
+
+body{
+    background-color: #2F4858;
+    color: #ff8644;
+}
+
+header > h1 {
+    text-align: center;
+}
+
+nav {
+    background-color: #333;
+}
+
+section > p {
+    text-align: justify;
+}
+
+#kdou  {
+    width: 100px;
+}
+
+.mission {
+    background-color: #4f9dd8;
+    display: inline-flex;
+    width: 30%;
+}
+
+footer {
+    font-size: 0.7em;
+}
+
+
