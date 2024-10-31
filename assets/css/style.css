@@ -1,10 +1,6 @@
 :root{
     --color-kdoubleu:lightblue;
     --color-hover:blue;
-    --color-hover:blue;
-    --color-hover:blue;
-    --color-hover:blue;
-    --color-hover:blue;
 }
 
 .grid {
@@ -14,9 +10,10 @@
     padding: 10px;
 }
 
+
 header {
     grid-column-start: 1;
-    grid-column-end: 5;
+    grid-column-end: 6;
     background-color: #2196F3;
 }
 
@@ -24,19 +21,38 @@ header > h1 {
     text-align: center;
 }
 
-nav {
+.menu {
     grid-column-start: 1;
     grid-column-end: 2;
-    background-color: #333;
+}
+
+.menu > li > a {
+    text-decoration: none;
+}
+
+.menu a:hover {
+    background-color: var(--color-hover);
+    color: white
 }
 
 aside {
-    grid-column-start: 2;
+    grid-column-start: 4;
     grid-column-end: 5;
 }
 
 main {
     grid-column-start: 1;
+    grid-column-end: 5;
+}
+
+.menu{
+    display: none;
+}
+
+#bouton_bascule:checked + .menu{ /*la pseudo class checked permet de cibler tout les elements dont l'attribut est de type check, le + permet de cibler n'importe quel element voisin*/
+    display: flex;
+    flex-direction: column;
+    background-color: white;
 }
 
 section > p {
@@ -45,7 +61,9 @@ section > p {
 
 footer {
     grid-column-start: 1;
+    grid-column-end: 5;
 }
+
 
 #kdou  {
     width: 100px;
@@ -54,7 +72,7 @@ footer {
 .mission {
     background-color: #4f9dd8;
     display: inline-flex;
-    width: 30%;
+    width: 33%;
 }
 
 footer {
