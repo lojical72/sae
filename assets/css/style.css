@@ -12,8 +12,8 @@
 
 
 header {
-    grid-column-start: 1;
-    grid-column-end: 6;
+    grid-column-start: 3;
+    grid-column-end: 4;
     background-color: #2196F3;
 }
 
@@ -21,9 +21,15 @@ header > h1 {
     text-align: center;
 }
 
-.menu {
+nav {
     grid-column-start: 1;
     grid-column-end: 2;
+    grid-row-start: 2;
+}
+
+.menu {
+    position: absolute;
+    list-style-type: none;
 }
 
 .menu > li > a {
@@ -35,16 +41,6 @@ header > h1 {
     color: white
 }
 
-aside {
-    grid-column-start: 4;
-    grid-column-end: 5;
-}
-
-main {
-    grid-column-start: 1;
-    grid-column-end: 5;
-}
-
 .menu{
     display: none;
 }
@@ -53,6 +49,16 @@ main {
     display: flex;
     flex-direction: column;
     background-color: white;
+}
+
+aside {
+    grid-column-start: 5;
+    grid-row-start: 2;
+}
+
+main {
+    grid-column-start: 1;
+    grid-column-end: 5;
 }
 
 section > p {
