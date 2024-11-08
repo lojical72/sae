@@ -106,6 +106,11 @@ nav {
     color: var(--dark-blue);
 }
 
+.mission:hover {
+    transform: rotate3d(1,1,1,2deg);
+    transition-duration: 1.5s;
+}
+
 footer {
     background-color: var(--dark-blue);
     color: white;
@@ -121,22 +126,24 @@ footer {
 
 .style_mission_generale {
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     padding: 2rem;
     background-color: white;
 }
 
 .style_mission_p {
-    text-align: center;
-    width: 80%;
+    display: flex;
+    justify-content: center;
     border: 1px solid #ddd;
     border-radius: 12px;
-    padding: 1.5rem;
+    padding-left: 1.5rem;
+    margin-bottom: 2rem;
     background-color: var(--background-color);
 }
 
-
 /*style miss 3*/
+/*
 .analysis {
     padding: 2rem;
     background-color: white;
@@ -169,13 +176,23 @@ footer {
     border-radius: 8px;
     margin-top: 1rem;
 }
+*/
 
 /*tableau*/
+
+caption {
+    font-size: 2rem;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    background-color: #282828;
+    border: 1px solid #ddd;
+}
 
 .styled-table {
     width: 100%;
     border-collapse: collapse;
-    margin: 1rem 0;
+    margin: 0 0 2rem 0;
     font-size: 1rem;
     text-align: left;
     background-color: white;
