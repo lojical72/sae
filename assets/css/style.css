@@ -46,7 +46,7 @@ nav {
     background-color: var(--light-blue);
 }
 
-.menu-icon {
+.menu_burger {
     font-size: 1.5rem;
     color: white;
     cursor: pointer;
@@ -80,7 +80,7 @@ nav {
     background-color: var(--background-color);
 }
 
-.missions {
+.affichage_missions {
     display: flex;
     justify-content: space-around;
     padding: 2rem;
@@ -110,9 +110,100 @@ footer {
     background-color: var(--dark-blue);
     color: white;
     text-align: center;
-    padding: 1rem;
-    font-size: 0.8rem;
-    position: fixed;
+    align-content: center;
+    position: relative;
     bottom: 0;
     width: 100%;
+    height: 50px;
+}
+
+/*style page mission*/
+
+.style_mission_generale {
+    display: flex;
+    justify-content: space-around;
+    padding: 2rem;
+    background-color: white;
+}
+
+.style_mission_p {
+    text-align: center;
+    width: 80%;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 1.5rem;
+    background-color: var(--background-color);
+}
+
+
+/*style miss 3*/
+.analysis {
+    padding: 2rem;
+    background-color: white;
+}
+
+.theme {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: var(--background-color);
+}
+
+.indicator {
+    margin-bottom: 1.5rem;
+}
+
+.indicator h4 {
+    color: var(--dark-blue);
+    font-size: 1.2rem;
+}
+
+.indicator p, .indicator pre {
+    margin: 0.5rem 0;
+}
+
+.indicator img {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+/*tableau*/
+
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 1rem;
+    text-align: left;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.styled-table th, .styled-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.styled-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    color: #333;
+}
+
+.styled-table pre {
+    font-size: 0.9rem;
+    background-color: #f9f9f9;
+    padding: 0.5rem;
+    border-radius: 4px;
+    overflow-x: auto;
+}
+
+.styled-table img {
+    max-width: 100%;
+    border-radius: 8px;
 }
