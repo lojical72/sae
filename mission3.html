@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Mission 2</title>
+    <title>Mission 3</title>
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 <body class="grid">
@@ -26,196 +26,324 @@
         <p>Bienvenue sur la page de la Mission 3, dédiée à l'analyse des données SQL pour KDou.</p>
     </section>
 
-    <section class="analysis">
-        <h2>Theme</h2>
+    <section class=style_mission_generale>
 
-        <!-- Thème 1: Desserts / Boissons -->
-        <article class="theme">
-            <h3>Desserts / Boissons</h3>
-
+        <article class="style_mission_p">
             <div class="indicator">
-                <h4>1er Indicateur :</h4>
-                <p><strong>Énoncé :</strong> Combien y a-t-il de produits correspondant vendus à 50€ ou plus ? On veut les connaître avec leur pays d'origine.</p>
-                <p><strong>Construction :</strong> Afficher les produits de la catégorie Desserts et Boissons dont le prix unitaire est supérieur ou égal à 50, ainsi que leur pays d'origine.</p>
-                <p><strong>Code SQL :</strong></p>
-                <pre>
-                    SELECT Fournisseur.Pays, Produit.NomProd, Produit.PrixUnit
-                    FROM Fournisseur
-                    INNER JOIN (Categorie INNER JOIN Produit ON Categorie.CodeCateg = Produit.CodeCateg)
-                    ON Fournisseur.NoFour = Produit.NoFour
-                    WHERE Produit.PrixUnit >= 50 AND Categorie.NomCateg IN ('Desserts','Boissons')
-                    GROUP BY Fournisseur.Pays, Produit.NomProd, Produit.PrixUnit, Produit.CodeCateg;
-                </pre>
-                <p><strong>Résultat :</strong></p>
-                <img src="assets/image/result1.png" alt="Résultat SQL 1">
-                <p><strong>Interprétation :</strong> Cette requête montre les produits de catégorie Desserts et Boissons dont le prix unitaire est supérieur ou égal à 50. Cela permet de fournir une information sur les produits chers, principalement des boissons alcoolisées.</p>
-            </div>
-
-            <div class="indicator">
-                <h4>2eme Indicateur :</h4>
-                <p><strong>Énoncé :</strong> Quels sont les pays de provenance de ces catégories ?</p>
-                <p><strong>Construction :</strong> Afficher les produits de la catégorie Desserts et Boissons dont le prix unitaire est supérieur ou égal à 50, ainsi que leur pays d'origine.</p>
-                <p><strong>Code SQL :</strong></p>
-                <pre>
-                    SELECT DISTINCT Fournisseur.Pays
-                    FROM (Produit
-                    INNER JOIN Fournisseur ON Produit.NoFour = Fournisseur.NoFour)
-                    INNER JOIN Categorie ON Produit.CodeCateg = Categorie.CodeCateg
-                    WHERE Produit.PrixUnit >= 50 AND Categorie.NomCateg IN ('Desserts', 'Boissons');
-
-
-                </pre>
-                <p><strong>Résultat :</strong></p>
-                <img src="assets/image/result1.png" alt="Résultat SQL 1">
-                <p><strong>Interprétation :</strong> Cette requête montre les pays de provenance des produits supérieurs ou égal à 50€ trouvés dans la requête précédente. Ainsi, on pourrait tenter de trouver un lien entre ces pays et le fait qu’ils vendent de l’alcool à des prix vraiment élevés.
-                </p>
-            </div>
-
-            <!-- Ajouter d'autres indicateurs pour ce thème de la même manière -->
-        </article>
-
-        <!-- Ajouter d'autres thèmes de la même manière -->
-    </section>
-
-
-    <section class="analysis">
-
-        <!-- Thème 1: Desserts / Boissons -->
-        <article class="theme">
-            <h3>1er indicateur</h3>
-
-            <div class="indicator">
-                <h4>1er Indicateur :</h4>
+                <h3 class="themes">Boissons/Desserts</h3>
                 <table class="styled-table">
-
+                    <caption>1er indicateur</caption>
+                    <thead>
                     <tr>
                         <th>Énoncé</th>
-                        <td>Combien y a-t-il de produits correspondant vendus à 50€ ou plus ? On veut les connaître avec leur pays d'origine.</td>
+                        <td>Combien y a-t-il des produits correspondants vendus 50€ ou plus ? On veut les connaître avec leur pays d’origine.
+                        </td>
                     </tr>
+                    </thead>
+                    <tbody>
                     <tr>
-                        <th>Construction</th>
-                        <td>Afficher les produits de la catégorie Desserts et Boissons dont le prix unitaire est supérieur ou égal à 50, ainsi que leur pays d'origine.</td>
-                    </tr>
-                    <tr>
-                        <th>Code SQL</th>
-                            <td>
-                                <pre>
-                                    SELECT Fournisseur.Pays, Produit.NomProd, Produit.PrixUnit
-                                    FROM Fournisseur
-                                    INNER JOIN (Categorie INNER JOIN Produit ON Categorie.CodeCateg = Produit.CodeCateg)
-                                    ON Fournisseur.NoFour = Produit.NoFour
-                                    WHERE Produit.PrixUnit >= 50 AND Categorie.NomCateg IN ('Desserts','Boissons')
-                                    GROUP BY Fournisseur.Pays, Produit.NomProd, Produit.PrixUnit, Produit.CodeCateg;
-                                </pre>
-                            </td>
+                        <th>Interprétation</th>
+                        <td>Cette requête montre les produits de catégorie Desserts et Boissons dont le prix unitaire est supérieur ou égal à 50. Elle fournit également des informations sur le numéro du fournisseur et le pays d'origine de ce fournisseur.
+                            Elle sert ainsi à donner une information aux clients sur les produits chers. Il n’y a quasiment que des boissons.
+                            Les prix les plus élevés sont des alcools, on pourrait préciser le % d’alcool présent pour préserver la santé des clients.
+                        </td>
                     </tr>
                     <tr>
                         <th>Résultat</th>
-                        <td><img src="assets/image/sf.ng" alt="Résultat SQL 1"></td>
+                        <td><img src="assets/image/mission2_indicateur1.png" alt="Premier indicateur"></td>
                     </tr>
                     <tr>
-                        <th>Interprétation</th>
-                        <td>Cette requête montre les produits de catégorie Desserts et Boissons dont le prix unitaire est supérieur ou égal à 50. Cela permet de fournir une information sur les produits chers, principalement des boissons alcoolisées.</td>
+                        <th>SQL généré</th>
+                        <td>
+                                        <pre>
+    SELECT Fournisseur.Pays, Produit.NomProd, Produit.PrixUnit
+FROM Fournisseur INNER JOIN (Categorie INNER JOIN Produit ON Categorie.CodeCateg = Produit.CodeCateg) ON Fournisseur.NoFour = Produit.NoFour
+WHERE (((Produit.PrixUnit)>=50) AND ((Categorie.NomCateg) In ('Desserts','Boissons')))
+GROUP BY Fournisseur.Pays, Produit.NomProd, Produit.PrixUnit, Produit.CodeCateg;
+
+                                        </pre>
+                        </td>
                     </tr>
+                    </tbody>
+                </table>
+
+                <table class="styled-table">
+                    <caption>2eme indicateur</caption>
+                    <thead>
+                    <tr>
+                        <th>Énoncé</th>
+                        <td> Quels sont les pays de provenance de ces catégories ?
+                        </td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th>Interprétation</th>
+                        <td> Cette requête montre les pays de provenance des produits supérieurs ou égal à 50€ trouvés dans la requête précédente. Ainsi, on pourrait tenter de trouver un lien entre ces pays et le fait qu’ils vendent de l’alcool à des prix vraiment élevés.
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Résultat</th>
+                        <td><img src="assets/image/mission2_indicateur1.png" alt="Premier indicateur"></td>
+                    </tr>
+                    <tr>
+                        <th>SQL généré</th>
+                        <td>
+                                        <pre>
+    SELECT DISTINCT Fournisseur.Pays
+FROM (Produit
+INNER JOIN Fournisseur ON Produit.NoFour = Fournisseur.NoFour)
+INNER JOIN Categorie ON Produit.CodeCateg = Categorie.CodeCateg
+WHERE Produit.PrixUnit >= 50 AND Categorie.NomCateg IN ('Desserts', 'Boissons');
+
+
+
+                                        </pre>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+    </section>
+
+
+    <section class=style_mission_generale>
+
+        <article class="style_mission_p">
+            <div class="indicator">
+                <h3 class="themes">L'offre de Kdou</h3>
+                <table class="styled-table">
+                    <caption>1er indicateur</caption>
+                    <thead>
+                    <tr>
+                        <th>Énoncé</th>
+                        <td> Donner des informations sur les fournisseurs qui proposent des produits qui ne sont pas commandés actuellement ?
+                        </td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th>Interprétation</th>
+                        <td>Cette requête montre les fournisseurs qui proposent des produits que ne sont pas encore commandés ainsi que leur contact, la ville, le pays et leur numéro de téléphone.  Il y a beaucoup de fournisseurs de pays hors de l’union européenne mais ce sont principalement des endroits où il y a déjà de la concurrence
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Résultat</th>
+                        <td><img src="assets/image/mission2_indicateur1.png" alt="Premier indicateur"></td>
+                    </tr>
+                    <tr>
+                        <th>SQL généré</th>
+                        <td>
+                                        <pre>
+   SELECT DISTINCT Fournisseur.Societe, Fournisseur.Contact,
+Fournisseur.Ville, Fournisseur.Pays, Fournisseur.Tel, Produit.NomProd
+FROM Fournisseur LEFT JOIN (Produit LEFT JOIN DetailCommande ON
+Produit.RefProd = DetailCommande.RefProd) ON Fournisseur.NoFour =
+Produit.NoFou
+WHERE (DetailCommande.RefProd) Is Null;
+
+                                        </pre>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <table class="styled-table">
+                    <caption>2eme indicateur</caption>
+                    <thead>
+                    <tr>
+                        <th>Énoncé</th>
+                        <td> Quels sont les pays qui ont une offre importante de produit ?
+                        </td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th>Interprétation</th>
+                        <td>Cette requête montre les pays avec une grande proposition de produits
+                            Sans faire attention aux fautes d’orthographes des pays qui fausses le compteur, on remarque que les pays qui vendent le plus sont : Le Royaume-Uni, Les Etats-Unis, l’Allemagne et l’Australie. On remarque que ce sont bien les pays avec une forte demande de produit
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Résultat</th>
+                        <td><img src="assets/image/mission2_indicateur1.png" alt="Premier indicateur"></td>
+                    </tr>
+                    <tr>
+                        <th>SQL généré</th>
+                        <td>
+                                        <pre>
+    SELECT Fournisseur.Pays, Count(Produit.RefProd) AS CompteDeRefProd
+FROM Fournisseur INNER JOIN Produit ON Fournisseur.NoFour =
+Produit.NoFour
+GROUP BY Fournisseur.Pays;
+
+                                        </pre>
+                        </td>
+                    </tr>
+                    </tbody>
                 </table>
             </div>
 
 
-            <!-- Ajouter d'autres indicateurs pour ce thème de la même manière -->
         </article>
 
-        <!-- Ajouter d'autres thèmes de la même manière -->
     </section>
 
+    <section class=style_mission_generale>
 
-    <section class="analysis">
-
-        <!-- Thème 1: Desserts / Boissons -->
-        <article class="theme">
-            <h3>Provenances des produits</h3>
-
+        <article class="style_mission_p">
             <div class="indicator">
-                <h4>1er indicateur</h4>
-                <p><strong>Énoncé :</strong> Combien y a-t-il de produits correspondant vendus à 50€ ou plus ? On veut les connaître avec leur pays d'origine.</p>
-                <p><strong>Construction :</strong> Afficher les produits de la catégorie Desserts et Boissons dont le prix unitaire est supérieur ou égal à 50, ainsi que leur pays d'origine.</p>
-                <p><strong>Code SQL :</strong></p>
-                <pre>
-                SELECT Fournisseur.Pays, Produit.NomProd, Produit.PrixUnit
-                FROM Fournisseur
-                INNER JOIN (Categorie INNER JOIN Produit ON Categorie.CodeCateg = Produit.CodeCateg)
-                ON Fournisseur.NoFour = Produit.NoFour
-                WHERE Produit.PrixUnit >= 50 AND Categorie.NomCateg IN ('Desserts','Boissons')
-                GROUP BY Fournisseur.Pays, Produit.NomProd, Produit.PrixUnit, Produit.CodeCateg;
-                    </pre>
-                <p><strong>Résultat :</strong></p>
-                <img src="assets/image/result1.png" alt="Résultat SQL 1">
-                <p><strong>Interprétation :</strong> Cette requête montre les produits de catégorie Desserts et Boissons dont le prix unitaire est supérieur ou égal à 50. Cela permet de fournir une information sur les produits chers, principalement des boissons alcoolisées.</p>
+                <h3 class="themes">Provenance des produits</h3>
+                <table class="styled-table">
+                    <caption>1er indicateur</caption>
+                    <thead>
+                    <tr>
+                        <th>Énoncé</th>
+                        <td> Pour l’Allemagne pays proche, quels sont les desserts ou boissons vendus à moins de 100 euros ?
+                        </td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th>Interprétation</th>
+                        <td> Ici, on voit que l’Allemagne offre 4 produits dessert ou boissons à moins de 100 euros, on peut en déduire que comme elle est proche de la France, les produits envoyés sont moins chère (en modifiant légèrement la requête, on peut vérifier les produits au dessus de 100 euros et il y en a aucun).</td>
+                    </tr>
+                    <tr>
+                        <th>Résultat</th>
+                        <td><img src="assets/image/mission2_indicateur1.png" alt="Premier indicateur"></td>
+                    </tr>
+                    <tr>
+                        <th>SQL généré</th>
+                        <td>
+                                        <pre>
+     SELECT Fournisseur.Pays, Produit.CodeCateg, Produit.PrixUnit, Produit.NomProd
+FROM Fournisseur
+INNER JOIN Produit ON Fournisseur.NoFour = Produit.NoFour
+WHERE Fournisseur.Pays = 'Allemagne'
+AND ( (Produit.CodeCateg = 1 AND Produit.PrixUnit < 100) OR (Produit.CodeCateg = 3 AND Produit.PrixUnit < 100) )
+ORDER BY Produit.PrixUnit;
+
+                                        </pre>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <table class="styled-table">
+                    <caption>2eme indicateur</caption>
+                    <thead>
+                    <tr>
+                        <th>Énoncé</th>
+                        <td>Y en a-t-il qui vendent les deux boissons et desserts ?</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th>Interprétation</th>
+                        <td> Cela permet de mieux organiser les fournisseurs pour réserver des transports spéciaux qui garderont leur produit au frais tout en prenant les deux catégories de produit en même temps. On remarque aussi que les fournisseurs faisant les deux sont seulement des pays éloignés de la France. Aucun pays proche n’en fait partie
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Résultat</th>
+                        <td><img src="assets/image/mission2_indicateur1.png" alt="Premier indicateur"></td>
+                    </tr>
+                    <tr>
+                        <th>SQL généré</th>
+                        <td>
+                                        <pre>
+    SELECT DISTINCT F.NoFour, F.Societe, P.CodeCateg, C.NomCateg, F.Pays
+FROM (Fournisseur AS F INNER JOIN Produit AS P ON F.NoFour = P.NoFour) INNER JOIN Categorie AS C  ON C.CodeCateg = P.CodeCateg
+WHERE F.NoFour IN (SELECT F.NoFour
+   FROM Fournisseur AS F INNER JOIN Produit AS P ON F.NoFour = P.NoFour
+   WHERE P.CodeCateg = 1)
+AND
+F.NoFour IN (SELECT F.NoFour
+   FROM Fournisseur AS F INNER JOIN Produit AS P ON   F.NoFour = P.NoFour
+   WHERE P.CodeCateg = 3);
+
+                                        </pre>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
 
-            <!-- Ajouter d'autres indicateurs pour ce thème de la même manière -->
+
         </article>
 
-        <!-- Ajouter d'autres thèmes de la même manière -->
     </section>
 
-    <section class="analysis">
+    <section class=style_mission_generale>
 
-        <!-- Thème 1: Desserts / Boissons -->
-        <article class="theme">
-            <h3>La clientèle</h3>
-
+        <article class="style_mission_p">
             <div class="indicator">
-                <h4>1er indicateur</h4>
-                <p><strong>Énoncé :</strong> Combien y a-t-il de produits correspondant vendus à 50€ ou plus ? On veut les connaître avec leur pays d'origine.</p>
-                <p><strong>Construction :</strong> Afficher les produits de la catégorie Desserts et Boissons dont le prix unitaire est supérieur ou égal à 50, ainsi que leur pays d'origine.</p>
-                <p><strong>Code SQL :</strong></p>
-                <pre>
-                SELECT Fournisseur.Pays, Produit.NomProd, Produit.PrixUnit
-                FROM Fournisseur
-                INNER JOIN (Categorie INNER JOIN Produit ON Categorie.CodeCateg = Produit.CodeCateg)
-                ON Fournisseur.NoFour = Produit.NoFour
-                WHERE Produit.PrixUnit >= 50 AND Categorie.NomCateg IN ('Desserts','Boissons')
-                GROUP BY Fournisseur.Pays, Produit.NomProd, Produit.PrixUnit, Produit.CodeCateg;
-                    </pre>
-                <p><strong>Résultat :</strong></p>
-                <img src="assets/image/result1.png" alt="Résultat SQL 1">
-                <p><strong>Interprétation :</strong> Cette requête montre les produits de catégorie Desserts et Boissons dont le prix unitaire est supérieur ou égal à 50. Cela permet de fournir une information sur les produits chers, principalement des boissons alcoolisées.</p>
+                <h3 class="themes">La Clientèle</h3>
+                <table class="styled-table">
+                    <caption>1er indicateur</caption>
+                    <thead>
+                    <tr>
+                        <th>Énoncé</th>
+                        <td> Un client nantais Le verre à soi souhaite savoir quels autres clients nantais commandent aussi des produits en Allemagne pour envisager de futures livraisons groupées.</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th>Interprétation</th>
+                        <td> Cette requête montre les autres clients nantais qui commandent en Allemagne
+                            Il y a deux clients à Besançon, on pourrait donc faire un groupe avec les 3 clients Nantais et ainsi diminuer les coûts de transports, financièrement comme écologiquement.</td>
+                    </tr>
+                    <tr>
+                        <th>Résultat</th>
+                        <td><img src="assets/image/mission2_indicateur1.png" alt="Premier indicateur"></td>
+                    </tr>
+                    <tr>
+                        <th>SQL généré</th>
+                        <td>
+                                        <pre>
+    SELECT DISTINCT Client.VilleCli, Client.SocieteCli, Fournisseur.Pays
+FROM Client, Fournisseur
+WHERE (((Client.VilleCli) Like "*antes") AND (Not (Client.SocieteCli)="Verre à soi") AND ((Fournisseur.Pays) Like "*llemagne"));
+
+                                        </pre>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <table class="styled-table">
+                    <caption>2eme indicateur</caption>
+                    <thead>
+                    <tr>
+                        <th>Énoncé</th>
+                        <td> Certains clients n’ont jamais eu la remise la plus importante de 25%. Qui sont-ils ?</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th>Interprétation</th>
+                        <td> Pour fidéliser ces clients, ils seraient bien qu’ils aient aussi accès à cette grosse remise de 25%. On pourrait imaginer de leur envoyer des remises spéciales par mail etc</td>
+                    </tr>
+                    <tr>
+                        <th>Résultat</th>
+                        <td><img src="assets/image/mission2_indicateur1.png" alt="Premier indicateur"></td>
+                    </tr>
+                    <tr>
+                        <th>SQL généré</th>
+                        <td>
+                                        <pre>
+     SELECT DISTINCT Client.SocieteCli
+FROM Client, DetailCommande
+WHERE ((DetailCommande.Remise)<>0.25);
+
+                                        </pre>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
 
-            <!-- Ajouter d'autres indicateurs pour ce thème de la même manière -->
+
         </article>
-
-        <!-- Ajouter d'autres thèmes de la même manière -->
-    </section>
-
-    <section class="analysis">
-    <h2>Indicateurs personnel</h2>
-        <!-- Thème 1: Desserts / Boissons -->
-        <div class="theme">
-            <h3>Desserts / Boissons</h3>
-
-            <div class="indicator">
-                <h4>Produits vendus à 50€ ou plus</h4>
-                <p><strong>Énoncé :</strong> Combien y a-t-il de produits correspondant vendus à 50€ ou plus ? On veut les connaître avec leur pays d'origine.</p>
-                <p><strong>Construction :</strong> Afficher les produits de la catégorie Desserts et Boissons dont le prix unitaire est supérieur ou égal à 50, ainsi que leur pays d'origine.</p>
-                <p><strong>Code SQL :</strong></p>
-                <pre>
-                SELECT Fournisseur.Pays, Produit.NomProd, Produit.PrixUnit
-                FROM Fournisseur
-                INNER JOIN (Categorie INNER JOIN Produit ON Categorie.CodeCateg = Produit.CodeCateg)
-                ON Fournisseur.NoFour = Produit.NoFour
-                WHERE Produit.PrixUnit >= 50 AND Categorie.NomCateg IN ('Desserts','Boissons')
-                GROUP BY Fournisseur.Pays, Produit.NomProd, Produit.PrixUnit, Produit.CodeCateg;
-                    </pre>
-                <p><strong>Résultat :</strong></p>
-                <img src="assets/image/result1.png" alt="Résultat SQL 1">
-                <p><strong>Interprétation :</strong> Cette requête montre les produits de catégorie Desserts et Boissons dont le prix unitaire est supérieur ou égal à 50. Cela permet de fournir une information sur les produits chers, principalement des boissons alcoolisées.</p>
-            </div>
-
-            <!-- Ajouter d'autres indicateurs pour ce thème de la même manière -->
-        </div>
-
-        <!-- Ajouter d'autres thèmes de la même manière -->
     </section>
 </main>
 

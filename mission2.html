@@ -1,49 +1,174 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <title>Mission 2</title>
-        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    </head>
-    <body class="grid">
-        <header>
-            <h1><a href="index.html">RAPPORT MISSION 2</a></h1>
-            <img src="assets\image\KDOU2.png" alt="Logo KDOU" class="logo">
-        </header>
+<head>
+    <meta charset="UTF-8">
+    <title>Mission 2</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+</head>
+<body class="grid">
+<header>
+    <h1><a href="index.html">RAPPORT MISSION 2</a></h1>
+    <img src="assets\image\KDOU2.png" alt="Logo KDOU" class="logo">
+</header>
 
-        <nav>
-            <input type="checkbox" id="bouton_bascule">
-            <label for="bouton_bascule" class="menu_burger">☰</label>
-            <ul class="menu">
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="mission1.html">Mission 1</a></li>
-                <li><a href="mission3.html">Mission 3</a></li>
-            </ul>
-        </nav>
+<nav>
+    <input type="checkbox" id="bouton_bascule">
+    <label for="bouton_bascule" class="menu_burger">☰</label>
+    <ul class="menu">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="mission1.html">Mission 1</a></li>
+        <li><a href="mission3.html">Mission 3</a></li>
+    </ul>
+</nav>
 
-        <main>
-            <section>
-                <article class="introduction">
-                    <h2>Présentation</h2>
-                    <p>Bienvenue sur la mission 2</p>
-                </article>
-            </section>
-            <section class=style_mission_generale>
-                <article class="style_mission_p">
-                    <p >L’objectif de cette mission est de commencer à exploiter la base de données de
-                        l’entreprise KDou en faisant des requêtes avec le logiciel Low Code Access.
-                        <br>Le mode de création graphique (interface QBE ou Query By Example) permet de générer le code SQL
-                    </p>
-                </article>
-                <article>
-                    <h3>1er Indicateur</h3>
-                    <p>Quels sont les produits d’Italie ou d’Allemagne vendus 50€ ou moins ? On veut les connaître noms et prix, nom du fournisseur, ville et pays d’orignes.</p>
-                    <p>Un client aurait demandé à connaître ces produits pour en acheter et il aurait donné son budget max (50€) et aurait commandé des produits d’Italie/d’Allemagne car moins de frais de port.</p>
-                </article>
-            </section>
-        </main>
-        <footer>
-            <p>&copy; 2024 Rapport de mission KDou - Tous droits réservés</p>
-        </footer>
-    </body>
+<main>
+    <section>
+        <article class="introduction">
+            <h2>Présentation</h2>
+            <p>Bienvenue sur la mission 2. <br>
+                L’objectif de cette mission est de commencer à exploiter la base de données de
+                l’entreprise KDou en faisant des requêtes avec le logiciel Low Code Access.
+                <br>Le mode de création graphique (interface QBE ou Query By Example) permet de générer le code SQL</p>
+        </article>
+    </section>
+
+    <section class=style_mission_generale>
+        <article class="style_mission_p">
+            <table class="styled-table">
+                <caption>1er Indicateur</caption>
+                <thead>
+                <tr>
+                    <th>Énoncé</th>
+                    <td>Quels sont les produits d’Italie ou d’Allemagne vendus 50€ ou moins ? On veut les connaître noms et prix, nom du fournisseur, ville et pays d’orignes.</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th>Interprétation</th>
+                    <td>Un client aurait demandé à connaître ces produits pour en acheter et il aurait donné son budget max (50€) et aurait commandé des produits d’Italie/d’Allemagne car moins de frais de port.</td>
+                </tr>
+                <tr>
+                    <th>Résultat</th>
+                    <td><img src="assets/image/mission2_indicateur1.png" alt="Premier indicateur"></td>
+                </tr>
+                <tr>
+                    <th>SQL généré</th>
+                    <td>
+                                    <pre>
+SELECT Produit.NomProd, Produit.PrixUnit, Fournisseur.Societe, Fournisseur.Ville, Fournisseur.Pays
+FROM Fournisseur INNER JOIN Produit ON Fournisseur.NoFour = Produit.NoFour
+GROUP BY Produit.NomProd, Produit.PrixUnit, Fournisseur.Societe, Fournisseur.Ville, Fournisseur.Pays
+HAVING (([Fournisseur].[Pays]="Italie") AND ([Produit].[PrixUnit]<50)) OR (([Fournisseur].[Pays]="Allemagne"));
+                                    </pre>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </article>
+
+        <article class="style_mission_p">
+            <table class="styled-table">
+                <caption>1er Indicateur</caption>
+                <thead>
+                <tr>
+                    <th>Énoncé</th>
+                    <td>Quels sont les produits d’Italie ou d’Allemagne vendus 50€ ou moins ? On veut les connaître noms et prix, nom du fournisseur, ville et pays d’orignes.</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th>Interprétation</th>
+                    <td>Un client aurait demandé à connaître ces produits pour en acheter et il aurait donné son budget max (50€) et aurait commandé des produits d’Italie/d’Allemagne car moins de frais de port.</td>
+                </tr>
+                <tr>
+                    <th>Résultat</th>
+                    <td><img src="assets/image/mission2_indicateur1.png" alt="Premier indicateur"></td>
+                </tr>
+                <tr>
+                    <th>SQL généré</th>
+                    <td>
+                                    <pre>
+SELECT Produit.NomProd, Produit.PrixUnit, Fournisseur.Societe, Fournisseur.Ville, Fournisseur.Pays
+FROM Fournisseur INNER JOIN Produit ON Fournisseur.NoFour = Produit.NoFour
+GROUP BY Produit.NomProd, Produit.PrixUnit, Fournisseur.Societe, Fournisseur.Ville, Fournisseur.Pays
+HAVING (([Fournisseur].[Pays]="Italie") AND ([Produit].[PrixUnit]<50)) OR (([Fournisseur].[Pays]="Allemagne"));
+                                    </pre>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </article>
+
+        <article class="style_mission_p">
+            <table class="styled-table">
+                <caption>1er Indicateur</caption>
+                <thead>
+                <tr>
+                    <th>Énoncé</th>
+                    <td>Quels sont les produits d’Italie ou d’Allemagne vendus 50€ ou moins ? On veut les connaître noms et prix, nom du fournisseur, ville et pays d’orignes.</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th>Interprétation</th>
+                    <td>Un client aurait demandé à connaître ces produits pour en acheter et il aurait donné son budget max (50€) et aurait commandé des produits d’Italie/d’Allemagne car moins de frais de port.</td>
+                </tr>
+                <tr>
+                    <th>Résultat</th>
+                    <td><img src="assets/image/mission2_indicateur1.png" alt="Premier indicateur"></td>
+                </tr>
+                <tr>
+                    <th>SQL généré</th>
+                    <td>
+                                    <pre>
+SELECT Produit.NomProd, Produit.PrixUnit, Fournisseur.Societe, Fournisseur.Ville, Fournisseur.Pays
+FROM Fournisseur INNER JOIN Produit ON Fournisseur.NoFour = Produit.NoFour
+GROUP BY Produit.NomProd, Produit.PrixUnit, Fournisseur.Societe, Fournisseur.Ville, Fournisseur.Pays
+HAVING (([Fournisseur].[Pays]="Italie") AND ([Produit].[PrixUnit]<50)) OR (([Fournisseur].[Pays]="Allemagne"));
+                                    </pre>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </article>
+
+        <article class="style_mission_p">
+            <table class="styled-table">
+                <caption>1er Indicateur</caption>
+                <thead>
+                <tr>
+                    <th>Énoncé</th>
+                    <td>Quels sont les produits d’Italie ou d’Allemagne vendus 50€ ou moins ? On veut les connaître noms et prix, nom du fournisseur, ville et pays d’orignes.</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th>Interprétation</th>
+                    <td>Un client aurait demandé à connaître ces produits pour en acheter et il aurait donné son budget max (50€) et aurait commandé des produits d’Italie/d’Allemagne car moins de frais de port.</td>
+                </tr>
+                <tr>
+                    <th>Résultat</th>
+                    <td><img src="assets/image/mission2_indicateur1.png" alt="Premier indicateur"></td>
+                </tr>
+                <tr>
+                    <th>SQL généré</th>
+                    <td>
+                                    <pre>
+SELECT Produit.NomProd, Produit.PrixUnit, Fournisseur.Societe, Fournisseur.Ville, Fournisseur.Pays
+FROM Fournisseur INNER JOIN Produit ON Fournisseur.NoFour = Produit.NoFour
+GROUP BY Produit.NomProd, Produit.PrixUnit, Fournisseur.Societe, Fournisseur.Ville, Fournisseur.Pays
+HAVING (([Fournisseur].[Pays]="Italie") AND ([Produit].[PrixUnit]<50)) OR (([Fournisseur].[Pays]="Allemagne"));
+                                    </pre>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </article>
+
+    </section>
+</main>
+<footer>
+    <p>&copy; 2024 Rapport de mission KDou - Tous droits réservés</p>
+</footer>
+</body>
 </html>
