@@ -8,7 +8,7 @@
 <body class="grid">
 <header>
     <h1><a href="index.html">RAPPORT MISSION 3</a></h1>
-    <img src="assets\image\KDOU2.png" alt="Logo KDOU" class="logo">
+    <img src="assets/image/KDOU2.png" alt="Logo KDOU" class="logo">
 </header>
 
 <nav>
@@ -20,34 +20,34 @@
         <li><a href="mission2.html">Mission 2</a></li>
     </ul>
 </nav>
+
 <main>
-    <section class="introduction">
-        <h2>Présentation</h2>
-        <p>Bienvenue sur la page de la Mission 3, dédiée à l'analyse des données SQL pour KDou.</p>
+    <section>
+        <article class="introduction">
+            <h2>Présentation</h2>
+            <p>Bienvenue sur la page de la Mission 3, dédiée à l'analyse des données SQL pour KDou.</p>
+        </article>
     </section>
 
     <section class=style_mission_generale>
-
+        <h3 class="themes">Boissons/Desserts</h3>
         <article class="style_mission_p">
-            <div class="indicator">
-                <h3 class="themes">Boissons/Desserts</h3>
-                <table class="styled-table">
-                    <caption>1er indicateur</caption>
+            <table class="styled-table">
+                <caption>1er indicateur</caption>
                     <thead>
-                    <tr>
-                        <th>Énoncé</th>
-                        <td>Combien y a-t-il des produits correspondants vendus 50€ ou plus ? On veut les connaître avec leur pays d’origine.
-                        </td>
-                    </tr>
+                        <tr>
+                            <th>Énoncé</th>
+                            <td>Combien y a-t-il des produits correspondants vendus 50€ ou plus ? On veut les connaître avec leur pays d’origine.</td>
+                        </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th>Interprétation</th>
-                        <td>Cette requête montre les produits de catégorie Desserts et Boissons dont le prix unitaire est supérieur ou égal à 50. Elle fournit également des informations sur le numéro du fournisseur et le pays d'origine de ce fournisseur.
-                            Elle sert ainsi à donner une information aux clients sur les produits chers. Il n’y a quasiment que des boissons.
-                            Les prix les plus élevés sont des alcools, on pourrait préciser le % d’alcool présent pour préserver la santé des clients.
-                        </td>
-                    </tr>
+                        <tr>
+                            <th>Interprétation</th>
+                            <td>Cette requête montre les produits de catégorie Desserts et Boissons dont le prix unitaire est supérieur ou égal à 50. Elle fournit également des informations sur le numéro du fournisseur et le pays d'origine de ce fournisseur.
+                                Elle sert ainsi à donner une information aux clients sur les produits chers. Il n’y a quasiment que des boissons.
+                                Les prix les plus élevés sont des alcools, on pourrait préciser le % d’alcool présent pour préserver la santé des clients.
+                            </td>
+                        </tr>
                     <tr>
                         <th>Résultat</th>
                         <td><img src="assets/image/mission2_indicateur1.png" alt="Premier indicateur"></td>
@@ -55,18 +55,20 @@
                     <tr>
                         <th>SQL généré</th>
                         <td>
-                                        <pre>
-    SELECT Fournisseur.Pays, Produit.NomProd, Produit.PrixUnit
-FROM Fournisseur INNER JOIN (Categorie INNER JOIN Produit ON Categorie.CodeCateg = Produit.CodeCateg) ON Fournisseur.NoFour = Produit.NoFour
-WHERE (((Produit.PrixUnit)>=50) AND ((Categorie.NomCateg) In ('Desserts','Boissons')))
-GROUP BY Fournisseur.Pays, Produit.NomProd, Produit.PrixUnit, Produit.CodeCateg;
-
-                                        </pre>
+                            <code>
+                                SELECT Fournisseur.Pays, Produit.NomProd, Produit.PrixUnit<br>
+                                FROM Fournisseur INNER JOIN <br>
+                                (Categorie INNER JOIN Produit ON Categorie.CodeCateg = Produit.CodeCateg)<br>
+                                ON Fournisseur.NoFour = Produit.NoFour<br>
+                                WHERE (((Produit.PrixUnit)>=50) AND ((Categorie.NomCateg) In ('Desserts','Boissons')))<br>
+                                GROUP BY Fournisseur.Pays, Produit.NomProd, Produit.PrixUnit, Produit.CodeCateg;<br>
+                            </code>
                         </td>
                     </tr>
-                    </tbody>
-                </table>
-
+                </tbody>
+            </table>
+        </article>
+        <article class="style_mission_p">
                 <table class="styled-table">
                     <caption>2eme indicateur</caption>
                     <thead>
@@ -89,29 +91,22 @@ GROUP BY Fournisseur.Pays, Produit.NomProd, Produit.PrixUnit, Produit.CodeCateg;
                     <tr>
                         <th>SQL généré</th>
                         <td>
-                                        <pre>
-    SELECT DISTINCT Fournisseur.Pays
-FROM (Produit
-INNER JOIN Fournisseur ON Produit.NoFour = Fournisseur.NoFour)
-INNER JOIN Categorie ON Produit.CodeCateg = Categorie.CodeCateg
-WHERE Produit.PrixUnit >= 50 AND Categorie.NomCateg IN ('Desserts', 'Boissons');
-
-
-
-                                        </pre>
+                            <code>
+                                SELECT DISTINCT Fournisseur.Pays<br>
+                                FROM (Produit<br>
+                                INNER JOIN Fournisseur ON Produit.NoFour = Fournisseur.NoFour)<br>
+                                INNER JOIN Categorie ON Produit.CodeCateg = Categorie.CodeCateg<br>
+                                WHERE Produit.PrixUnit >= 50 AND Categorie.NomCateg IN ('Desserts', 'Boissons');<br>
+                            </code>
                         </td>
                     </tr>
                     </tbody>
                 </table>
-            </div>
+        </article>
     </section>
-
-
     <section class=style_mission_generale>
-
+        <h3 class="themes">L'offre de Kdou</h3>
         <article class="style_mission_p">
-            <div class="indicator">
-                <h3 class="themes">L'offre de Kdou</h3>
                 <table class="styled-table">
                     <caption>1er indicateur</caption>
                     <thead>
@@ -134,20 +129,18 @@ WHERE Produit.PrixUnit >= 50 AND Categorie.NomCateg IN ('Desserts', 'Boissons');
                     <tr>
                         <th>SQL généré</th>
                         <td>
-                                        <pre>
-   SELECT DISTINCT Fournisseur.Societe, Fournisseur.Contact,
-Fournisseur.Ville, Fournisseur.Pays, Fournisseur.Tel, Produit.NomProd
-FROM Fournisseur LEFT JOIN (Produit LEFT JOIN DetailCommande ON
-Produit.RefProd = DetailCommande.RefProd) ON Fournisseur.NoFour =
-Produit.NoFou
-WHERE (DetailCommande.RefProd) Is Null;
-
-                                        </pre>
+                            <code>
+                                SELECT DISTINCT Fournisseur.Societe, Fournisseur.Contact, Fournisseur.Ville, Fournisseur.Pays, Fournisseur.Tel, Produit.NomProd<br>
+                                FROM Fournisseur LEFT JOIN (Produit LEFT JOIN DetailCommande ON Produit.RefProd = DetailCommande.RefProd)<br>
+                                ON Fournisseur.NoFour = Produit.NoFou<br>
+                                WHERE (DetailCommande.RefProd) Is Null;<br>
+                            </code>
                         </td>
                     </tr>
                     </tbody>
                 </table>
-
+        </article>
+        <article class="style_mission_p">
                 <table class="styled-table">
                     <caption>2eme indicateur</caption>
                     <thead>
@@ -171,29 +164,23 @@ WHERE (DetailCommande.RefProd) Is Null;
                     <tr>
                         <th>SQL généré</th>
                         <td>
-                                        <pre>
-    SELECT Fournisseur.Pays, Count(Produit.RefProd) AS CompteDeRefProd
-FROM Fournisseur INNER JOIN Produit ON Fournisseur.NoFour =
-Produit.NoFour
-GROUP BY Fournisseur.Pays;
-
-                                        </pre>
+                            <code>
+                                SELECT Fournisseur.Pays, Count(Produit.RefProd) AS CompteDeRefProd<br>
+                                FROM Fournisseur INNER JOIN Produit ON Fournisseur.NoFour = Produit.NoFour<br>
+                                GROUP BY Fournisseur.Pays;<br>
+                            </code>
                         </td>
                     </tr>
                     </tbody>
                 </table>
-            </div>
-
 
         </article>
 
     </section>
 
     <section class=style_mission_generale>
-
+        <h3 class="themes">Provenance des produits</h3>
         <article class="style_mission_p">
-            <div class="indicator">
-                <h3 class="themes">Provenance des produits</h3>
                 <table class="styled-table">
                     <caption>1er indicateur</caption>
                     <thead>
@@ -204,31 +191,30 @@ GROUP BY Fournisseur.Pays;
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th>Interprétation</th>
-                        <td> Ici, on voit que l’Allemagne offre 4 produits dessert ou boissons à moins de 100 euros, on peut en déduire que comme elle est proche de la France, les produits envoyés sont moins chère (en modifiant légèrement la requête, on peut vérifier les produits au dessus de 100 euros et il y en a aucun).</td>
-                    </tr>
-                    <tr>
-                        <th>Résultat</th>
-                        <td><img src="assets/image/mission2_indicateur1.png" alt="Premier indicateur"></td>
-                    </tr>
-                    <tr>
-                        <th>SQL généré</th>
-                        <td>
-                                        <pre>
-     SELECT Fournisseur.Pays, Produit.CodeCateg, Produit.PrixUnit, Produit.NomProd
-FROM Fournisseur
-INNER JOIN Produit ON Fournisseur.NoFour = Produit.NoFour
-WHERE Fournisseur.Pays = 'Allemagne'
-AND ( (Produit.CodeCateg = 1 AND Produit.PrixUnit < 100) OR (Produit.CodeCateg = 3 AND Produit.PrixUnit < 100) )
-ORDER BY Produit.PrixUnit;
-
-                                        </pre>
-                        </td>
-                    </tr>
+                        <tr>
+                            <th>Interprétation</th>
+                            <td> Ici, on voit que l’Allemagne offre 4 produits dessert ou boissons à moins de 100 euros, on peut en déduire que comme elle est proche de la France, les produits envoyés sont moins chère (en modifiant légèrement la requête, on peut vérifier les produits au dessus de 100 euros et il y en a aucun).</td>
+                        </tr>
+                        <tr>
+                            <th>Résultat</th>
+                            <td><img src="assets/image/mission2_indicateur1.png" alt="Premier indicateur"></td>
+                        </tr>
+                        <tr>
+                            <th>SQL généré</th>
+                            <td>
+                                <code>
+                                    SELECT Fournisseur.Pays, Produit.CodeCateg, Produit.PrixUnit, Produit.NomProd<br>
+                                    FROM Fournisseur INNER JOIN Produit ON Fournisseur.NoFour = Produit.NoFour<br>
+                                    WHERE Fournisseur.Pays = 'Allemagne'<br>
+                                    AND ( (Produit.CodeCateg = 1 AND Produit.PrixUnit < 100) OR (Produit.CodeCateg = 3 AND Produit.PrixUnit < 100) )<br>
+                                    ORDER BY Produit.PrixUnit;<br>
+                                </code>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
-
+        </article>
+        <article class="style_mission_p">
                 <table class="styled-table">
                     <caption>2eme indicateur</caption>
                     <thead>
@@ -250,34 +236,29 @@ ORDER BY Produit.PrixUnit;
                     <tr>
                         <th>SQL généré</th>
                         <td>
-                                        <pre>
-    SELECT DISTINCT F.NoFour, F.Societe, P.CodeCateg, C.NomCateg, F.Pays
-FROM (Fournisseur AS F INNER JOIN Produit AS P ON F.NoFour = P.NoFour) INNER JOIN Categorie AS C  ON C.CodeCateg = P.CodeCateg
-WHERE F.NoFour IN (SELECT F.NoFour
-   FROM Fournisseur AS F INNER JOIN Produit AS P ON F.NoFour = P.NoFour
-   WHERE P.CodeCateg = 1)
-AND
-F.NoFour IN (SELECT F.NoFour
-   FROM Fournisseur AS F INNER JOIN Produit AS P ON   F.NoFour = P.NoFour
-   WHERE P.CodeCateg = 3);
-
-                                        </pre>
+                            <code>
+                                SELECT DISTINCT F.NoFour, F.Societe, P.CodeCateg, C.NomCateg, F.Pays<br>
+                                FROM (Fournisseur AS F INNER JOIN Produit AS P ON F.NoFour = P.NoFour)<br>
+                                INNER JOIN Categorie AS C  ON C.CodeCateg = P.CodeCateg<br>
+                                WHERE F.NoFour IN (SELECT F.NoFour<br>
+                                FROM Fournisseur AS F INNER JOIN Produit AS P ON F.NoFour = P.NoFour<br>
+                                WHERE P.CodeCateg = 1)<br>
+                                AND F.NoFour IN<br>
+                                (SELECT F.NoFour<br>
+                                FROM Fournisseur AS F INNER JOIN Produit AS P ON   F.NoFour = P.NoFour<br>
+                                WHERE P.CodeCateg = 3);<br>
+                            </code>
                         </td>
                     </tr>
                     </tbody>
                 </table>
-            </div>
-
-
         </article>
 
     </section>
 
     <section class=style_mission_generale>
-
+        <h3 class="themes">La Clientèle</h3>
         <article class="style_mission_p">
-            <div class="indicator">
-                <h3 class="themes">La Clientèle</h3>
                 <table class="styled-table">
                     <caption>1er indicateur</caption>
                     <thead>
@@ -299,17 +280,19 @@ F.NoFour IN (SELECT F.NoFour
                     <tr>
                         <th>SQL généré</th>
                         <td>
-                                        <pre>
-    SELECT DISTINCT Client.VilleCli, Client.SocieteCli, Fournisseur.Pays
-FROM Client, Fournisseur
-WHERE (((Client.VilleCli) Like "*antes") AND (Not (Client.SocieteCli)="Verre à soi") AND ((Fournisseur.Pays) Like "*llemagne"));
-
-                                        </pre>
+                            <code>
+                                SELECT DISTINCT Client.VilleCli, Client.SocieteCli, Fournisseur.Pays<br>
+                                FROM Client, Fournisseur<br>
+                                WHERE (((Client.VilleCli) Like "*antes")<br>
+                                AND (Not (Client.SocieteCli)="Verre à soi")<br>
+                                AND ((Fournisseur.Pays) Like "*llemagne"));<br>
+                            </code>
                         </td>
                     </tr>
                     </tbody>
                 </table>
-
+        </article>
+        <article class="style_mission_p">
                 <table class="styled-table">
                     <caption>2eme indicateur</caption>
                     <thead>
@@ -330,19 +313,15 @@ WHERE (((Client.VilleCli) Like "*antes") AND (Not (Client.SocieteCli)="Verre à 
                     <tr>
                         <th>SQL généré</th>
                         <td>
-                                        <pre>
-     SELECT DISTINCT Client.SocieteCli
-FROM Client, DetailCommande
-WHERE ((DetailCommande.Remise)<>0.25);
-
-                                        </pre>
+                            <code>
+                                SELECT DISTINCT Client.SocieteCli<br>
+                                FROM Client, DetailCommande<br>
+                                WHERE ((DetailCommande.Remise)<>0.25);<br>
+                            </code>
                         </td>
                     </tr>
                     </tbody>
                 </table>
-            </div>
-
-
         </article>
     </section>
 </main>

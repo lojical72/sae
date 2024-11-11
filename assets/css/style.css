@@ -216,7 +216,7 @@ caption {
     font-weight: bold;
     color: #333;
 }
-
+/*
 .styled-table pre {
     font-size: 0.9rem;
     background-color: #f9f9f9;
@@ -224,7 +224,7 @@ caption {
     border-radius: 4px;
     overflow-x: auto;
 }
-
+*/
 .styled-table img {
     max-width: 100%;
     border-radius: 8px;

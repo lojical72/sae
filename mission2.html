@@ -54,12 +54,13 @@
                     <tr>
                         <th>SQL généré</th>
                         <td>
-                                    <pre>
-SELECT Produit.NomProd, Produit.PrixUnit, Fournisseur.Societe, Fournisseur.Ville, Fournisseur.Pays
-FROM Fournisseur INNER JOIN Produit ON Fournisseur.NoFour = Produit.NoFour
-GROUP BY Produit.NomProd, Produit.PrixUnit, Fournisseur.Societe, Fournisseur.Ville, Fournisseur.Pays
-HAVING (([Fournisseur].[Pays]="Italie") AND ([Produit].[PrixUnit]<50)) OR (([Fournisseur].[Pays]="Allemagne"));
-                                    </pre>
+                            <code>
+                                SELECT Produit.NomProd, Produit.PrixUnit, Fournisseur.Societe, Fournisseur.Ville, Fournisseur.Pays<br>
+                                FROM Fournisseur INNER JOIN Produit ON Fournisseur.NoFour = Produit.NoFour<br>
+                                GROUP BY Produit.NomProd, Produit.PrixUnit, Fournisseur.Societe, Fournisseur.Ville, Fournisseur.Pays<br>
+                                HAVING (([Fournisseur].[Pays]="Italie") AND ([Produit].[PrixUnit]<50))<br>
+                                OR(([Fournisseur].[Pays]="Allemagne"));<br>
+                            </code>
                         </td>
                     </tr>
                 </tbody>
@@ -88,13 +89,13 @@ HAVING (([Fournisseur].[Pays]="Italie") AND ([Produit].[PrixUnit]<50)) OR (([Fou
                     <tr>
                         <th>SQL généré</th>
                         <td>
-                                    <pre>
-SELECT DISTINCT Client.CodeCli, Produit.NomProd, Produit.CodeCateg, Produit.PrixUnit
-FROM Client INNER JOIN (Commande INNER JOIN (Produit INNER JOIN DetailCommande ON Produit.RefProd = DetailCommande.RefProd)
-                                        ON Commande.NoCom = DetailCommande.NoCom) ON Client.CodeCli = Commande.CodeCli
-WHERE (((Client.CodeCli)="PAVBO"))
-ORDER BY Produit.NomProd;
-                                    </pre>
+                            <code>
+                                SELECT DISTINCT Client.CodeCli, Produit.NomProd, Produit.CodeCateg, Produit.PrixUnit<br>
+                                FROM Client INNER JOIN (Commande INNER JOIN (Produit INNER JOIN DetailCommande ON Produit.RefProd = DetailCommande.RefProd)<br>
+                                ON Commande.NoCom = DetailCommande.NoCom) ON Client.CodeCli = Commande.CodeCli<br>
+                                WHERE (((Client.CodeCli)="PAVBO"))<br>
+                                ORDER BY Produit.NomProd;<br>
+                            </code>
                         </td>
                     </tr>
                 </tbody>
@@ -122,10 +123,10 @@ ORDER BY Produit.NomProd;
                     <tr>
                         <th>SQL généré</th>
                         <td>
-                                    <pre>
-SELECT Min(Produit.PrixUnit) AS [Min], Avg(Produit.PrixUnit) AS Moyen, Max(Produit.PrixUnit) AS [Max]
-FROM Produit;
-                                    </pre>
+                            <code>
+                                SELECT Min(Produit.PrixUnit) AS [Min], Avg(Produit.PrixUnit) AS Moyen, Max(Produit.PrixUnit) AS [Max]<br>
+                                FROM Produit;<br>
+                            </code>
                         </td>
                     </tr>
                 </tbody>
@@ -153,12 +154,12 @@ FROM Produit;
                     <tr>
                         <th>SQL généré</th>
                         <td>
-                                    <pre>
-SELECT Produit.NomProd, Produit.QteParUnite
-FROM Produit
-WHERE (((Produit.QteParUnite) Like "*carton*" Or (Produit.QteParUnite) Like "*verre*"))
-ORDER BY Produit.NomProd;
-                                    </pre>
+                            <code>
+                                SELECT Produit.NomProd, Produit.QteParUnite<br>
+                                FROM Produit<br>
+                                WHERE (((Produit.QteParUnite) Like "*carton*" Or (Produit.QteParUnite) Like "*verre*"))<br>
+                                ORDER BY Produit.NomProd;<br>
+                            </code>
                         </td>
                     </tr>
                 </tbody>
