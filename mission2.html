@@ -8,7 +8,7 @@
 <body class="grid">
 <header>
     <h1><a href="index.html">RAPPORT MISSION 2</a></h1>
-    <img src="assets\image\KDOU2.png" alt="Logo KDOU" class="logo">
+    <img src="assets/image/KDOU2.png" alt="Logo KDOU" class="logo">
 </header>
 
 <nav>
@@ -54,12 +54,13 @@
                 <tr>
                     <th>SQL généré</th>
                     <td>
-                                    <pre>
-SELECT Produit.NomProd, Produit.PrixUnit, Fournisseur.Societe, Fournisseur.Ville, Fournisseur.Pays
-FROM Fournisseur INNER JOIN Produit ON Fournisseur.NoFour = Produit.NoFour
-GROUP BY Produit.NomProd, Produit.PrixUnit, Fournisseur.Societe, Fournisseur.Ville, Fournisseur.Pays
-HAVING (([Fournisseur].[Pays]="Italie") AND ([Produit].[PrixUnit]<50)) OR (([Fournisseur].[Pays]="Allemagne"));
-                                    </pre>
+                        <code>
+                            SELECT Produit.NomProd, Produit.PrixUnit, Fournisseur.Societe, Fournisseur.Ville, Fournisseur.Pays<br>
+                            FROM Fournisseur INNER JOIN Produit ON Fournisseur.NoFour = Produit.NoFour<br>
+                            GROUP BY Produit.NomProd, Produit.PrixUnit, Fournisseur.Societe, Fournisseur.Ville, Fournisseur.Pays<br>
+                            HAVING (([Fournisseur].[Pays]="Italie") AND ([Produit].[PrixUnit]<50))<br>
+                            OR(([Fournisseur].[Pays]="Allemagne"));<br>
+                        </code>
                     </td>
                 </tr>
                 </tbody>
@@ -68,31 +69,33 @@ HAVING (([Fournisseur].[Pays]="Italie") AND ([Produit].[PrixUnit]<50)) OR (([Fou
 
         <article class="style_mission_p">
             <table class="styled-table">
-                <caption>1er Indicateur</caption>
+                <caption>2ème Indicateur</caption>
                 <thead>
                 <tr>
                     <th>Énoncé</th>
-                    <td>Quels sont les produits d’Italie ou d’Allemagne vendus 50€ ou moins ? On veut les connaître noms et prix, nom du fournisseur, ville et pays d’orignes.</td>
+                    <td>Quels produits (nom, catégorie et prix) a commandé le client Mikal Pavbo ?</td>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <th>Interprétation</th>
-                    <td>Un client aurait demandé à connaître ces produits pour en acheter et il aurait donné son budget max (50€) et aurait commandé des produits d’Italie/d’Allemagne car moins de frais de port.</td>
+                    <td>Mikal Pavbo aurait demandé à vérifier si ces commandes ont bien été enregistrées.
+                    </td>
                 </tr>
                 <tr>
                     <th>Résultat</th>
-                    <td><img src="assets/image/mission2_indicateur1.png" alt="Premier indicateur"></td>
+                    <td><img src="assets/image/mission2_indicateur2.png" alt="Premier indicateur"></td>
                 </tr>
                 <tr>
                     <th>SQL généré</th>
                     <td>
-                                    <pre>
-SELECT Produit.NomProd, Produit.PrixUnit, Fournisseur.Societe, Fournisseur.Ville, Fournisseur.Pays
-FROM Fournisseur INNER JOIN Produit ON Fournisseur.NoFour = Produit.NoFour
-GROUP BY Produit.NomProd, Produit.PrixUnit, Fournisseur.Societe, Fournisseur.Ville, Fournisseur.Pays
-HAVING (([Fournisseur].[Pays]="Italie") AND ([Produit].[PrixUnit]<50)) OR (([Fournisseur].[Pays]="Allemagne"));
-                                    </pre>
+                        <code>
+                            SELECT DISTINCT Client.CodeCli, Produit.NomProd, Produit.CodeCateg, Produit.PrixUnit<br>
+                            FROM Client INNER JOIN (Commande INNER JOIN (Produit INNER JOIN DetailCommande ON Produit.RefProd = DetailCommande.RefProd)<br>
+                            ON Commande.NoCom = DetailCommande.NoCom) ON Client.CodeCli = Commande.CodeCli<br>
+                            WHERE (((Client.CodeCli)="PAVBO"))<br>
+                            ORDER BY Produit.NomProd;<br>
+                        </code>
                     </td>
                 </tr>
                 </tbody>
@@ -101,31 +104,29 @@ HAVING (([Fournisseur].[Pays]="Italie") AND ([Produit].[PrixUnit]<50)) OR (([Fou
 
         <article class="style_mission_p">
             <table class="styled-table">
-                <caption>1er Indicateur</caption>
+                <caption>3ème Indicateur</caption>
                 <thead>
                 <tr>
                     <th>Énoncé</th>
-                    <td>Quels sont les produits d’Italie ou d’Allemagne vendus 50€ ou moins ? On veut les connaître noms et prix, nom du fournisseur, ville et pays d’orignes.</td>
+                    <td>Donner le prix moyen de vente des produits, le prix minimum et le prix maximum.</td>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <th>Interprétation</th>
-                    <td>Un client aurait demandé à connaître ces produits pour en acheter et il aurait donné son budget max (50€) et aurait commandé des produits d’Italie/d’Allemagne car moins de frais de port.</td>
+                    <td>On peut ainsi montrer au futur client l’ordre de grandeur des prix proposés.</td>
                 </tr>
                 <tr>
                     <th>Résultat</th>
-                    <td><img src="assets/image/mission2_indicateur1.png" alt="Premier indicateur"></td>
+                    <td><img src="assets/image/mission2_indicateur3.png" alt="Premier indicateur"></td>
                 </tr>
                 <tr>
                     <th>SQL généré</th>
                     <td>
-                                    <pre>
-SELECT Produit.NomProd, Produit.PrixUnit, Fournisseur.Societe, Fournisseur.Ville, Fournisseur.Pays
-FROM Fournisseur INNER JOIN Produit ON Fournisseur.NoFour = Produit.NoFour
-GROUP BY Produit.NomProd, Produit.PrixUnit, Fournisseur.Societe, Fournisseur.Ville, Fournisseur.Pays
-HAVING (([Fournisseur].[Pays]="Italie") AND ([Produit].[PrixUnit]<50)) OR (([Fournisseur].[Pays]="Allemagne"));
-                                    </pre>
+                        <code>
+                            SELECT Min(Produit.PrixUnit) AS [Min], Avg(Produit.PrixUnit) AS Moyen, Max(Produit.PrixUnit) AS [Max]<br>
+                            FROM Produit;<br>
+                        </code>
                     </td>
                 </tr>
                 </tbody>
@@ -134,31 +135,31 @@ HAVING (([Fournisseur].[Pays]="Italie") AND ([Produit].[PrixUnit]<50)) OR (([Fou
 
         <article class="style_mission_p">
             <table class="styled-table">
-                <caption>1er Indicateur</caption>
+                <caption>4ème Indicateur</caption>
                 <thead>
                 <tr>
                     <th>Énoncé</th>
-                    <td>Quels sont les produits d’Italie ou d’Allemagne vendus 50€ ou moins ? On veut les connaître noms et prix, nom du fournisseur, ville et pays d’orignes.</td>
+                    <td>Quels sont les produits conditionnés dans du carton ou dans du verre ?</td>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <th>Interprétation</th>
-                    <td>Un client aurait demandé à connaître ces produits pour en acheter et il aurait donné son budget max (50€) et aurait commandé des produits d’Italie/d’Allemagne car moins de frais de port.</td>
+                    <td>Pour permettre de les transporter en toute sécurité lors de la livraison.</td>
                 </tr>
                 <tr>
                     <th>Résultat</th>
-                    <td><img src="assets/image/mission2_indicateur1.png" alt="Premier indicateur"></td>
+                    <td><img src="assets/image/mission2_indicateur4.png" alt="Premier indicateur"></td>
                 </tr>
                 <tr>
                     <th>SQL généré</th>
                     <td>
-                                    <pre>
-SELECT Produit.NomProd, Produit.PrixUnit, Fournisseur.Societe, Fournisseur.Ville, Fournisseur.Pays
-FROM Fournisseur INNER JOIN Produit ON Fournisseur.NoFour = Produit.NoFour
-GROUP BY Produit.NomProd, Produit.PrixUnit, Fournisseur.Societe, Fournisseur.Ville, Fournisseur.Pays
-HAVING (([Fournisseur].[Pays]="Italie") AND ([Produit].[PrixUnit]<50)) OR (([Fournisseur].[Pays]="Allemagne"));
-                                    </pre>
+                        <code>
+                            SELECT Produit.NomProd, Produit.QteParUnite<br>
+                            FROM Produit<br>
+                            WHERE (((Produit.QteParUnite) Like "*carton*" Or (Produit.QteParUnite) Like "*verre*"))<br>
+                            ORDER BY Produit.NomProd;<br>
+                        </code>
                     </td>
                 </tr>
                 </tbody>
