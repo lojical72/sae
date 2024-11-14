@@ -10,6 +10,7 @@ html {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
 }
 
 body {
@@ -46,17 +47,6 @@ nav {
     background-color: var(--light-blue);
 }
 
-.menu_burger {
-    font-size: 1.5rem;
-    color: white;
-    cursor: pointer;
-    display: none;
-}
-
-#bouton_bascule {
-    display: none;
-}
-
 .menu {
     list-style-type: none;
     display: flex;
@@ -75,6 +65,7 @@ nav {
 }
 
 .introduction {
+    font-size: 1.3rem;
     padding: 2rem;
     text-align: center;
     background-color: var(--background-color);
@@ -124,7 +115,23 @@ footer {
     position: relative;
     bottom: 0;
     width: 100%;
-    height: 50px;
+    height: 2.5rem;
+    margin-bottom: 50px;
+}
+
+@media screen and (max-width: 768px) {
+    .logo {
+        position: absolute;
+        right: 1rem;
+        top: 10%;
+        width: 30px;
+        height: auto;
+    }
+
+    .menu {
+        font-size: 0.8rem;
+        flex-wrap: wrap;
+    }
 }
 
 /*style page mission*/
@@ -147,41 +154,10 @@ footer {
     background-color: var(--background-color);
 }
 
-/*style miss 3*/
-/*
-.analysis {
-    padding: 2rem;
-    background-color: white;
+.themes {
+    text-align: center;
+    text-decoration: underline;
 }
-
-.theme {
-    margin-bottom: 2rem;
-    padding: 1.5rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: var(--background-color);
-}
-
-.indicator {
-    margin-bottom: 1.5rem;
-}
-
-.indicator h4 {
-    color: var(--dark-blue);
-    font-size: 1.2rem;
-}
-
-.indicator p, .indicator pre {
-    margin: 0.5rem 0;
-}
-
-.indicator img {
-    width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    margin-top: 1rem;
-}
-*/
 
 /*tableau*/
 
@@ -216,15 +192,7 @@ caption {
     font-weight: bold;
     color: #333;
 }
-/*
-.styled-table pre {
-    font-size: 0.9rem;
-    background-color: #f9f9f9;
-    padding: 0.5rem;
-    border-radius: 4px;
-    overflow-x: auto;
-}
-*/
+
 .styled-table img {
     max-width: 100%;
     border-radius: 8px;

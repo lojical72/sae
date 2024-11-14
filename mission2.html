@@ -1,175 +1,176 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Mission 2</title>
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-</head>
-<body class="grid">
-<header>
-    <h1><a href="index.html">RAPPORT MISSION 2</a></h1>
-    <img src="assets/image/KDOU2.png" alt="Logo KDOU" class="logo">
-</header>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Mission 2</title>
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    </head>
+    <body class="grid">
+        <header>
+            <h1><a href="index.html">RAPPORT MISSION 2</a></h1>
+            <img src="assets/image/KDOU2.png" alt="Logo KDOU" class="logo">
+        </header>
 
-<nav>
-    <input type="checkbox" id="bouton_bascule">
-    <label for="bouton_bascule" class="menu_burger">☰</label>
-    <ul class="menu">
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="mission1.html">Mission 1</a></li>
-        <li><a href="mission3.html">Mission 3</a></li>
-    </ul>
-</nav>
+        <nav>
+            <ul class="menu">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="mission1.html">Mission 1</a></li>
+                <li><a href="mission2.html">Mission 2</a></li>
+                <li><a href="mission3.html">Mission 3</a></li>
+                <li><a href="conclusion.html">Conclusion</a></li>
+            </ul>
+        </nav>
 
-<main>
-    <section>
-        <article class="introduction">
-            <h2>Présentation</h2>
-            <p>Bienvenue sur la mission 2. <br>
-                L’objectif de cette mission est de commencer à exploiter la base de données de
-                l’entreprise KDou en faisant des requêtes avec le logiciel Low Code Access.
-                <br>Le mode de création graphique (interface QBE ou Query By Example) permet de générer le code SQL</p>
-        </article>
-    </section>
+        <main>
+            <section>
+                <article class="introduction">
+                    <h2>Présentation</h2>
+                    <p>Bienvenue sur la mission 2. <br>
+                        L’objectif de cette mission est de commencer à exploiter la base de données de
+                        l’entreprise KDou en faisant des requêtes avec le logiciel Low Code Access.
+                        <br>Le mode de création graphique (interface QBE ou Query By Example) permet de générer le code SQL</p>
+                </article>
+            </section>
 
-    <section class=style_mission_generale>
-        <article class="style_mission_p">
-            <table class="styled-table">
-                <caption>1er Indicateur</caption>
-                <thead>
-                <tr>
-                    <th>Énoncé</th>
-                    <td>Quels sont les produits d’Italie ou d’Allemagne vendus 50€ ou moins ? On veut les connaître noms et prix, nom du fournisseur, ville et pays d’orignes.</td>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <th>Interprétation</th>
-                    <td>Un client aurait demandé à connaître ces produits pour en acheter et il aurait donné son budget max (50€) et aurait commandé des produits d’Italie/d’Allemagne car moins de frais de port.</td>
-                </tr>
-                <tr>
-                    <th>Résultat</th>
-                    <td><img src="assets/image/mission2_indicateur1.png" alt="Premier indicateur"></td>
-                </tr>
-                <tr>
-                    <th>SQL généré</th>
-                    <td>
-                        <code>
-                            SELECT Produit.NomProd, Produit.PrixUnit, Fournisseur.Societe, Fournisseur.Ville, Fournisseur.Pays<br>
-                            FROM Fournisseur INNER JOIN Produit ON Fournisseur.NoFour = Produit.NoFour<br>
-                            GROUP BY Produit.NomProd, Produit.PrixUnit, Fournisseur.Societe, Fournisseur.Ville, Fournisseur.Pays<br>
-                            HAVING (([Fournisseur].[Pays]="Italie") AND ([Produit].[PrixUnit]<50))<br>
-                            OR(([Fournisseur].[Pays]="Allemagne"));<br>
-                        </code>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </article>
+            <section class=style_mission_generale>
+                <article class="style_mission_p">
+                    <table class="styled-table">
+                        <caption>1er Indicateur</caption>
+                        <thead>
+                            <tr>
+                                <th>Énoncé</th>
+                                <td>Quels sont les produits d’Italie ou d’Allemagne vendus 50€ ou moins ? On veut les connaître noms et prix, nom du fournisseur, ville et pays d’orignes.</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>Interprétation</th>
+                                <td>Un client aurait demandé à connaître ces produits pour en acheter et il aurait donné son budget max (50€) et aurait commandé des produits d’Italie/d’Allemagne car moins de frais de port.</td>
+                            </tr>
+                            <tr>
+                                <th>Résultat</th>
+                                <td><img src="assets/image/mission2_indicateur1.png" alt="Premier indicateur"></td>
+                            </tr>
+                            <tr>
+                                <th>SQL généré</th>
+                                <td>
+                                    <code>
+                                        SELECT Produit.NomProd, Produit.PrixUnit, Fournisseur.Societe, Fournisseur.Ville, Fournisseur.Pays<br>
+                                        FROM Fournisseur INNER JOIN Produit ON Fournisseur.NoFour = Produit.NoFour<br>
+                                        GROUP BY Produit.NomProd, Produit.PrixUnit, Fournisseur.Societe, Fournisseur.Ville, Fournisseur.Pays<br>
+                                        HAVING (([Fournisseur].[Pays]="Italie") AND ([Produit].[PrixUnit]<50))<br>
+                                        OR(([Fournisseur].[Pays]="Allemagne"));<br>
+                                    </code>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </article>
 
-        <article class="style_mission_p">
-            <table class="styled-table">
-                <caption>2ème Indicateur</caption>
-                <thead>
-                <tr>
-                    <th>Énoncé</th>
-                    <td>Quels produits (nom, catégorie et prix) a commandé le client Mikal Pavbo ?</td>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <th>Interprétation</th>
-                    <td>Mikal Pavbo aurait demandé à vérifier si ces commandes ont bien été enregistrées.
-                    </td>
-                </tr>
-                <tr>
-                    <th>Résultat</th>
-                    <td><img src="assets/image/mission2_indicateur2.png" alt="Premier indicateur"></td>
-                </tr>
-                <tr>
-                    <th>SQL généré</th>
-                    <td>
-                        <code>
-                            SELECT DISTINCT Client.CodeCli, Produit.NomProd, Produit.CodeCateg, Produit.PrixUnit<br>
-                            FROM Client INNER JOIN (Commande INNER JOIN (Produit INNER JOIN DetailCommande ON Produit.RefProd = DetailCommande.RefProd)<br>
-                            ON Commande.NoCom = DetailCommande.NoCom) ON Client.CodeCli = Commande.CodeCli<br>
-                            WHERE (((Client.CodeCli)="PAVBO"))<br>
-                            ORDER BY Produit.NomProd;<br>
-                        </code>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </article>
+                <article class="style_mission_p">
+                    <table class="styled-table">
+                        <caption>2ème Indicateur</caption>
+                        <thead>
+                            <tr>
+                                <th>Énoncé</th>
+                                <td>Quels produits (nom, catégorie et prix) a commandé le client Mikal Pavbo ?</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>Interprétation</th>
+                                <td>Mikal Pavbo aurait demandé à vérifier si ces commandes ont bien été enregistrées.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Résultat</th>
+                                <td><img src="assets/image/mission2_indicateur2.png" alt="Deuxième indicateur"></td>
+                            </tr>
+                            <tr>
+                                <th>SQL généré</th>
+                                <td>
+                                    <code>
+                                        SELECT DISTINCT Client.CodeCli, Produit.NomProd, Produit.CodeCateg, Produit.PrixUnit<br>
+                                        FROM Client INNER JOIN (Commande INNER JOIN (Produit INNER JOIN DetailCommande ON Produit.RefProd = DetailCommande.RefProd)<br>
+                                        ON Commande.NoCom = DetailCommande.NoCom) ON Client.CodeCli = Commande.CodeCli<br>
+                                        WHERE (((Client.CodeCli)="PAVBO"))<br>
+                                        ORDER BY Produit.NomProd;<br>
+                                    </code>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </article>
 
-        <article class="style_mission_p">
-            <table class="styled-table">
-                <caption>3ème Indicateur</caption>
-                <thead>
-                <tr>
-                    <th>Énoncé</th>
-                    <td>Donner le prix moyen de vente des produits, le prix minimum et le prix maximum.</td>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <th>Interprétation</th>
-                    <td>On peut ainsi montrer au futur client l’ordre de grandeur des prix proposés.</td>
-                </tr>
-                <tr>
-                    <th>Résultat</th>
-                    <td><img src="assets/image/mission2_indicateur3.png" alt="Premier indicateur"></td>
-                </tr>
-                <tr>
-                    <th>SQL généré</th>
-                    <td>
-                        <code>
-                            SELECT Min(Produit.PrixUnit) AS [Min], Avg(Produit.PrixUnit) AS Moyen, Max(Produit.PrixUnit) AS [Max]<br>
-                            FROM Produit;<br>
-                        </code>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </article>
+                <article class="style_mission_p">
+                    <table class="styled-table">
+                        <caption>3ème Indicateur</caption>
+                        <thead>
+                            <tr>
+                                <th>Énoncé</th>
+                                <td>Donner le prix moyen de vente des produits, le prix minimum et le prix maximum.</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>Interprétation</th>
+                                <td>On peut ainsi montrer au futur client l’ordre de grandeur des prix proposés.</td>
+                            </tr>
+                            <tr>
+                                <th>Résultat</th>
+                                <td><img src="assets/image/mission2_indicateur3.png" alt="Troisième indicateur"></td>
+                            </tr>
+                            <tr>
+                                <th>SQL généré</th>
+                                <td>
+                                    <code>
+                                        SELECT Min(Produit.PrixUnit) AS [Min], Avg(Produit.PrixUnit) AS Moyen, Max(Produit.PrixUnit) AS [Max]<br>
+                                        FROM Produit;<br>
+                                    </code>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </article>
 
-        <article class="style_mission_p">
-            <table class="styled-table">
-                <caption>4ème Indicateur</caption>
-                <thead>
-                <tr>
-                    <th>Énoncé</th>
-                    <td>Quels sont les produits conditionnés dans du carton ou dans du verre ?</td>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <th>Interprétation</th>
-                    <td>Pour permettre de les transporter en toute sécurité lors de la livraison.</td>
-                </tr>
-                <tr>
-                    <th>Résultat</th>
-                    <td><img src="assets/image/mission2_indicateur4.png" alt="Premier indicateur"></td>
-                </tr>
-                <tr>
-                    <th>SQL généré</th>
-                    <td>
-                        <code>
-                            SELECT Produit.NomProd, Produit.QteParUnite<br>
-                            FROM Produit<br>
-                            WHERE (((Produit.QteParUnite) Like "*carton*" Or (Produit.QteParUnite) Like "*verre*"))<br>
-                            ORDER BY Produit.NomProd;<br>
-                        </code>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </article>
+                <article class="style_mission_p">
+                    <table class="styled-table">
+                        <caption>4ème Indicateur</caption>
+                        <thead>
+                            <tr>
+                                <th>Énoncé</th>
+                                <td>Quels sont les produits conditionnés dans du carton ou dans du verre ?</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>Interprétation</th>
+                                <td>Pour permettre de les transporter en toute sécurité lors de la livraison.</td>
+                            </tr>
+                            <tr>
+                                <th>Résultat</th>
+                                <td><img src="assets/image/mission2_indicateur4.png" alt="Quatrième indicateur"></td>
+                            </tr>
+                            <tr>
+                                <th>SQL généré</th>
+                                <td>
+                                    <code>
+                                        SELECT Produit.NomProd, Produit.QteParUnite<br>
+                                        FROM Produit<br>
+                                        WHERE (((Produit.QteParUnite) Like "*carton*" Or (Produit.QteParUnite) Like "*verre*"))<br>
+                                        ORDER BY Produit.NomProd;<br>
+                                    </code>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </article>
 
-    </section>
-</main>
-<footer>
-    <p>&copy; 2024 Rapport de mission KDou - Tous droits réservés</p>
-</footer>
-</body>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2024 Rapport de mission KDou - Tous droits réservés</p>
+        </footer>
+    </body>
 </html>
