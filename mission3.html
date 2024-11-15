@@ -7,475 +7,475 @@
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     </head>
     <body class="grid">
-    <header>
-        <h1><a href="index.html">RAPPORT MISSION 3</a></h1>
-        <img src="assets/image/KDOU2.png" alt="Logo KDOU" class="logo">
-    </header>
+        <header>
+            <h1><a href="index.html">RAPPORT MISSION 3</a></h1>
+            <img src="assets/image/KDOU2.png" alt="Logo KDOU" class="logo">
+        </header>
 
-    <nav>
-        <ul class="menu">
-            <li><a href="index.html">Accueil</a></li>
-            <li><a href="mission1.html">Mission 1</a></li>
-            <li><a href="mission2.html">Mission 2</a></li>
-            <li><a href="mission3.html">Mission 3</a></li>
-            <li><a href="conclusion.html">Conclusion</a></li>
-        </ul>
-    </nav>
+        <nav>
+            <ul class="menu">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="mission1.html">Mission 1</a></li>
+                <li><a href="mission2.html">Mission 2</a></li>
+                <li><a href="mission3.html">Mission 3</a></li>
+                <li><a href="conclusion.html">Conclusion</a></li>
+            </ul>
+        </nav>
 
-    <main>
-        <section>
-            <article class="introduction">
-                <h2>Présentation</h2>
-                <p>Bienvenue sur la page de la Mission 3, dédiée à l'analyse des données SQL pour KDou.</p>
-            </article>
-        </section>
+        <main>
+            <section>
+                <article class="introduction">
+                    <h2>Présentation</h2>
+                    <p>Bienvenue sur la page de la Mission 3, dédiée à l'analyse des données SQL pour KDou.</p>
+                </article>
+            </section>
 
-        <section class=style_mission_generale>
-            <h3 class="themes">Boissons/Desserts</h3>
-            <article class="style_mission_p">
-                <table class="styled-table">
-                    <caption>1er indicateur</caption>
-                    <thead>
-                    <tr>
-                        <th>Énoncé</th>
-                        <td>Combien y a-t-il des produits correspondants vendus 50€ ou plus ? On veut les connaître avec leur pays d’origine.</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th>Interprétation</th>
-                        <td>Cette requête montre les produits de catégorie Desserts et Boissons dont le prix unitaire est supérieur ou égal à 50. Elle fournit également des informations sur le numéro du fournisseur et le pays d'origine de ce fournisseur.
-                            Elle sert ainsi à donner une information aux clients sur les produits chers. Il n’y a quasiment que des boissons.
-                            Les prix les plus élevés sont des alcools, on pourrait préciser le % d’alcool présent pour préserver la santé des clients.
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Résultat</th>
-                        <td><img src="assets/image/1a.png" alt="Premier indicateur"></td>
-                    </tr>
-                    <tr>
-                        <th>SQL généré</th>
-                        <td>
-                            <code>
-                                SELECT Fournisseur.Pays, Produit.NomProd, Produit.PrixUnit<br>
-                                FROM Fournisseur INNER JOIN <br>
-                                (Categorie INNER JOIN Produit ON Categorie.CodeCateg = Produit.CodeCateg)<br>
-                                ON Fournisseur.NoFour = Produit.NoFour<br>
-                                WHERE (((Produit.PrixUnit)>=50) AND ((Categorie.NomCateg) In ('Desserts','Boissons')))<br>
-                                GROUP BY Fournisseur.Pays, Produit.NomProd, Produit.PrixUnit, Produit.CodeCateg;<br>
-                            </code>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </article>
-            <article class="style_mission_p">
-                <table class="styled-table">
-                    <caption>2eme indicateur</caption>
-                    <thead>
-                    <tr>
-                        <th>Énoncé</th>
-                        <td> Quels sont les pays de provenance de ces catégories ?
-                        </td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th>Interprétation</th>
-                        <td> Cette requête montre les pays de provenance des produits supérieurs ou égal à 50€ trouvés dans la requête précédente. Ainsi, on pourrait tenter de trouver un lien entre ces pays et le fait qu’ils vendent de l’alcool à des prix vraiment élevés.
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Résultat</th>
-                        <td><img src="assets/image/1b.png" alt="Premier indicateur"></td>
-                    </tr>
-                    <tr>
-                        <th>SQL généré</th>
-                        <td>
-                            <code>
-                                SELECT DISTINCT Fournisseur.Pays<br>
-                                FROM (Produit<br>
-                                INNER JOIN Fournisseur ON Produit.NoFour = Fournisseur.NoFour)<br>
-                                INNER JOIN Categorie ON Produit.CodeCateg = Categorie.CodeCateg<br>
-                                WHERE Produit.PrixUnit >= 50 AND Categorie.NomCateg IN ('Desserts', 'Boissons');<br>
-                            </code>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </article>
-        </section>
-        <section class=style_mission_generale>
-            <h3 class="themes">L'offre de Kdou</h3>
-            <article class="style_mission_p">
-                <table class="styled-table">
-                    <caption>1er indicateur</caption>
-                    <thead>
-                    <tr>
-                        <th>Énoncé</th>
-                        <td> Donner des informations sur les fournisseurs qui proposent des produits qui ne sont pas commandés actuellement ?
-                        </td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th>Interprétation</th>
-                        <td>Cette requête montre les fournisseurs qui proposent des produits que ne sont pas encore commandés ainsi que leur contact, la ville, le pays et leur numéro de téléphone.  Il y a beaucoup de fournisseurs de pays hors de l’union européenne mais ce sont principalement des endroits où il y a déjà de la concurrence
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Résultat</th>
-                        <td><img src="assets/image/2a.png" alt="Premier indicateur"></td>
-                    </tr>
-                    <tr>
-                        <th>SQL généré</th>
-                        <td>
-                            <code>
-                                SELECT DISTINCT Fournisseur.Societe, Fournisseur.Contact, Fournisseur.Ville, Fournisseur.Pays, Fournisseur.Tel, Produit.NomProd<br>
-                                FROM Fournisseur LEFT JOIN (Produit LEFT JOIN DetailCommande ON Produit.RefProd = DetailCommande.RefProd)<br>
-                                ON Fournisseur.NoFour = Produit.NoFou<br>
-                                WHERE (DetailCommande.RefProd) Is Null;<br>
-                            </code>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </article>
-            <article class="style_mission_p">
-                <table class="styled-table">
-                    <caption>2eme indicateur</caption>
-                    <thead>
-                    <tr>
-                        <th>Énoncé</th>
-                        <td> Quels sont les pays qui ont une offre importante de produit ?
-                        </td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th>Interprétation</th>
-                        <td>Cette requête montre les pays avec une grande proposition de produits
-                            Sans faire attention aux fautes d’orthographes des pays qui fausses le compteur, on remarque que les pays qui vendent le plus sont : Le Royaume-Uni, Les Etats-Unis, l’Allemagne et l’Australie. On remarque que ce sont bien les pays avec une forte demande de produit
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Résultat</th>
-                        <td><img src="assets/image/2c.png" alt="Premier indicateur"></td>
-                    </tr>
-                    <tr>
-                        <th>SQL généré</th>
-                        <td>
-                            <code>
-                                SELECT Fournisseur.Pays, Count(Produit.RefProd) AS CompteDeRefProd<br>
-                                FROM Fournisseur INNER JOIN Produit ON Fournisseur.NoFour = Produit.NoFour<br>
-                                GROUP BY Fournisseur.Pays;<br>
-                            </code>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+            <section class=style_mission_generale>
+                <h3 class="themes">Boissons/Desserts</h3>
+                <article class="style_mission_p">
+                    <table class="styled-table">
+                        <caption>1er indicateur</caption>
+                        <thead>
+                        <tr>
+                            <th>Énoncé</th>
+                            <td>Combien y a-t-il des produits correspondants vendus 50€ ou plus ? On veut les connaître avec leur pays d’origine.</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th>Interprétation</th>
+                            <td>Cette requête montre les produits de catégorie Desserts et Boissons dont le prix unitaire est supérieur ou égal à 50. Elle fournit également des informations sur le numéro du fournisseur et le pays d'origine de ce fournisseur.
+                                Elle sert ainsi à donner une information aux clients sur les produits chers. Il n’y a quasiment que des boissons.
+                                Les prix les plus élevés sont des alcools, on pourrait préciser le % d’alcool présent pour préserver la santé des clients.
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Résultat</th>
+                            <td><img src="assets/image/1a.png" alt="Premier indicateur"></td>
+                        </tr>
+                        <tr>
+                            <th>SQL généré</th>
+                            <td>
+                                <code>
+                                    SELECT Fournisseur.Pays, Produit.NomProd, Produit.PrixUnit<br>
+                                    FROM Fournisseur INNER JOIN <br>
+                                    (Categorie INNER JOIN Produit ON Categorie.CodeCateg = Produit.CodeCateg)<br>
+                                    ON Fournisseur.NoFour = Produit.NoFour<br>
+                                    WHERE (((Produit.PrixUnit)>=50) AND ((Categorie.NomCateg) In ('Desserts','Boissons')))<br>
+                                    GROUP BY Fournisseur.Pays, Produit.NomProd, Produit.PrixUnit, Produit.CodeCateg;<br>
+                                </code>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </article>
+                <article class="style_mission_p">
+                    <table class="styled-table">
+                        <caption>2eme indicateur</caption>
+                        <thead>
+                        <tr>
+                            <th>Énoncé</th>
+                            <td> Quels sont les pays de provenance de ces catégories ?
+                            </td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th>Interprétation</th>
+                            <td> Cette requête montre les pays de provenance des produits supérieurs ou égal à 50€ trouvés dans la requête précédente. Ainsi, on pourrait tenter de trouver un lien entre ces pays et le fait qu’ils vendent de l’alcool à des prix vraiment élevés.
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Résultat</th>
+                            <td><img src="assets/image/1b.png" alt="Premier indicateur"></td>
+                        </tr>
+                        <tr>
+                            <th>SQL généré</th>
+                            <td>
+                                <code>
+                                    SELECT DISTINCT Fournisseur.Pays<br>
+                                    FROM (Produit<br>
+                                    INNER JOIN Fournisseur ON Produit.NoFour = Fournisseur.NoFour)<br>
+                                    INNER JOIN Categorie ON Produit.CodeCateg = Categorie.CodeCateg<br>
+                                    WHERE Produit.PrixUnit >= 50 AND Categorie.NomCateg IN ('Desserts', 'Boissons');<br>
+                                </code>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </article>
+            </section>
+            <section class=style_mission_generale>
+                <h3 class="themes">L'offre de Kdou</h3>
+                <article class="style_mission_p">
+                    <table class="styled-table">
+                        <caption>1er indicateur</caption>
+                        <thead>
+                        <tr>
+                            <th>Énoncé</th>
+                            <td> Donner des informations sur les fournisseurs qui proposent des produits qui ne sont pas commandés actuellement ?
+                            </td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th>Interprétation</th>
+                            <td>Cette requête montre les fournisseurs qui proposent des produits que ne sont pas encore commandés ainsi que leur contact, la ville, le pays et leur numéro de téléphone.  Il y a beaucoup de fournisseurs de pays hors de l’union européenne mais ce sont principalement des endroits où il y a déjà de la concurrence
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Résultat</th>
+                            <td><img src="assets/image/2a.png" alt="Premier indicateur"></td>
+                        </tr>
+                        <tr>
+                            <th>SQL généré</th>
+                            <td>
+                                <code>
+                                    SELECT DISTINCT Fournisseur.Societe, Fournisseur.Contact, Fournisseur.Ville, Fournisseur.Pays, Fournisseur.Tel, Produit.NomProd<br>
+                                    FROM Fournisseur LEFT JOIN (Produit LEFT JOIN DetailCommande ON Produit.RefProd = DetailCommande.RefProd)<br>
+                                    ON Fournisseur.NoFour = Produit.NoFou<br>
+                                    WHERE (DetailCommande.RefProd) Is Null;<br>
+                                </code>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </article>
+                <article class="style_mission_p">
+                    <table class="styled-table">
+                        <caption>2eme indicateur</caption>
+                        <thead>
+                        <tr>
+                            <th>Énoncé</th>
+                            <td> Quels sont les pays qui ont une offre importante de produit ?
+                            </td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th>Interprétation</th>
+                            <td>Cette requête montre les pays avec une grande proposition de produits
+                                Sans faire attention aux fautes d’orthographes des pays qui fausses le compteur, on remarque que les pays qui vendent le plus sont : Le Royaume-Uni, Les Etats-Unis, l’Allemagne et l’Australie. On remarque que ce sont bien les pays avec une forte demande de produit
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Résultat</th>
+                            <td><img src="assets/image/2c.png" alt="Premier indicateur"></td>
+                        </tr>
+                        <tr>
+                            <th>SQL généré</th>
+                            <td>
+                                <code>
+                                    SELECT Fournisseur.Pays, Count(Produit.RefProd) AS CompteDeRefProd<br>
+                                    FROM Fournisseur INNER JOIN Produit ON Fournisseur.NoFour = Produit.NoFour<br>
+                                    GROUP BY Fournisseur.Pays;<br>
+                                </code>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
 
-            </article>
+                </article>
 
-        </section>
+            </section>
 
-        <section class=style_mission_generale>
-            <h3 class="themes">Provenance des produits</h3>
-            <article class="style_mission_p">
-                <table class="styled-table">
-                    <caption>1er indicateur</caption>
-                    <thead>
-                    <tr>
-                        <th>Énoncé</th>
-                        <td> Pour l’Allemagne pays proche, quels sont les desserts ou boissons vendus à moins de 100 euros ?
-                        </td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th>Interprétation</th>
-                        <td> Ici, on voit que l’Allemagne offre 4 produits dessert ou boissons à moins de 100 euros, on peut en déduire que comme elle est proche de la France, les produits envoyés sont moins chère (en modifiant légèrement la requête, on peut vérifier les produits au dessus de 100 euros et il y en a aucun).</td>
-                    </tr>
-                    <tr>
-                        <th>Résultat</th>
-                        <td><img src="assets/image/3a.png" alt="Premier indicateur"></td>
-                    </tr>
-                    <tr>
-                        <th>SQL généré</th>
-                        <td>
-                            <code>
-                                SELECT Fournisseur.Pays, Produit.CodeCateg, Produit.PrixUnit, Produit.NomProd<br>
-                                FROM Fournisseur INNER JOIN Produit ON Fournisseur.NoFour = Produit.NoFour<br>
-                                WHERE Fournisseur.Pays = 'Allemagne'<br>
-                                AND ( (Produit.CodeCateg = 1 AND Produit.PrixUnit < 100) OR (Produit.CodeCateg = 3 AND Produit.PrixUnit < 100) )<br>
-                                ORDER BY Produit.PrixUnit;<br>
-                            </code>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </article>
-            <article class="style_mission_p">
-                <table class="styled-table">
-                    <caption>2eme indicateur</caption>
-                    <thead>
-                    <tr>
-                        <th>Énoncé</th>
-                        <td>Y en a-t-il qui vendent les deux boissons et desserts ?</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th>Interprétation</th>
-                        <td> Cela permet de mieux organiser les fournisseurs pour réserver des transports spéciaux qui garderont leur produit au frais tout en prenant les deux catégories de produit en même temps. On remarque aussi que les fournisseurs faisant les deux sont seulement des pays éloignés de la France. Aucun pays proche n’en fait partie
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Résultat</th>
-                        <td><img src="assets/image/3c.png" alt="Premier indicateur"></td>
-                    </tr>
-                    <tr>
-                        <th>SQL généré</th>
-                        <td>
-                            <code>
-                                SELECT DISTINCT F.NoFour, F.Societe, P.CodeCateg, C.NomCateg, F.Pays<br>
-                                FROM (Fournisseur AS F INNER JOIN Produit AS P ON F.NoFour = P.NoFour)<br>
-                                INNER JOIN Categorie AS C  ON C.CodeCateg = P.CodeCateg<br>
-                                WHERE F.NoFour IN (SELECT F.NoFour<br>
-                                FROM Fournisseur AS F INNER JOIN Produit AS P ON F.NoFour = P.NoFour<br>
-                                WHERE P.CodeCateg = 1)<br>
-                                AND F.NoFour IN<br>
-                                (SELECT F.NoFour<br>
-                                FROM Fournisseur AS F INNER JOIN Produit AS P ON   F.NoFour = P.NoFour<br>
-                                WHERE P.CodeCateg = 3);<br>
-                            </code>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </article>
+            <section class=style_mission_generale>
+                <h3 class="themes">Provenance des produits</h3>
+                <article class="style_mission_p">
+                    <table class="styled-table">
+                        <caption>1er indicateur</caption>
+                        <thead>
+                        <tr>
+                            <th>Énoncé</th>
+                            <td> Pour l’Allemagne pays proche, quels sont les desserts ou boissons vendus à moins de 100 euros ?
+                            </td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th>Interprétation</th>
+                            <td> Ici, on voit que l’Allemagne offre 4 produits dessert ou boissons à moins de 100 euros, on peut en déduire que comme elle est proche de la France, les produits envoyés sont moins chère (en modifiant légèrement la requête, on peut vérifier les produits au dessus de 100 euros et il y en a aucun).</td>
+                        </tr>
+                        <tr>
+                            <th>Résultat</th>
+                            <td><img src="assets/image/3a.png" alt="Premier indicateur"></td>
+                        </tr>
+                        <tr>
+                            <th>SQL généré</th>
+                            <td>
+                                <code>
+                                    SELECT Fournisseur.Pays, Produit.CodeCateg, Produit.PrixUnit, Produit.NomProd<br>
+                                    FROM Fournisseur INNER JOIN Produit ON Fournisseur.NoFour = Produit.NoFour<br>
+                                    WHERE Fournisseur.Pays = 'Allemagne'<br>
+                                    AND ( (Produit.CodeCateg = 1 AND Produit.PrixUnit < 100) OR (Produit.CodeCateg = 3 AND Produit.PrixUnit < 100) )<br>
+                                    ORDER BY Produit.PrixUnit;<br>
+                                </code>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </article>
+                <article class="style_mission_p">
+                    <table class="styled-table">
+                        <caption>2eme indicateur</caption>
+                        <thead>
+                        <tr>
+                            <th>Énoncé</th>
+                            <td>Y en a-t-il qui vendent les deux boissons et desserts ?</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th>Interprétation</th>
+                            <td> Cela permet de mieux organiser les fournisseurs pour réserver des transports spéciaux qui garderont leur produit au frais tout en prenant les deux catégories de produit en même temps. On remarque aussi que les fournisseurs faisant les deux sont seulement des pays éloignés de la France. Aucun pays proche n’en fait partie
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Résultat</th>
+                            <td><img src="assets/image/3c.png" alt="Premier indicateur"></td>
+                        </tr>
+                        <tr>
+                            <th>SQL généré</th>
+                            <td>
+                                <code>
+                                    SELECT DISTINCT F.NoFour, F.Societe, P.CodeCateg, C.NomCateg, F.Pays<br>
+                                    FROM (Fournisseur AS F INNER JOIN Produit AS P ON F.NoFour = P.NoFour)<br>
+                                    INNER JOIN Categorie AS C  ON C.CodeCateg = P.CodeCateg<br>
+                                    WHERE F.NoFour IN (SELECT F.NoFour<br>
+                                    FROM Fournisseur AS F INNER JOIN Produit AS P ON F.NoFour = P.NoFour<br>
+                                    WHERE P.CodeCateg = 1)<br>
+                                    AND F.NoFour IN<br>
+                                    (SELECT F.NoFour<br>
+                                    FROM Fournisseur AS F INNER JOIN Produit AS P ON   F.NoFour = P.NoFour<br>
+                                    WHERE P.CodeCateg = 3);<br>
+                                </code>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </article>
 
-        </section>
+            </section>
 
-        <section class=style_mission_generale>
-            <h3 class="themes">La Clientèle</h3>
-            <article class="style_mission_p">
-                <table class="styled-table">
-                    <caption>1er indicateur</caption>
-                    <thead>
-                    <tr>
-                        <th>Énoncé</th>
-                        <td> Un client nantais Le verre à soi souhaite savoir quels autres clients nantais commandent aussi des produits en Allemagne pour envisager de futures livraisons groupées.</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th>Interprétation</th>
-                        <td> Cette requête montre les autres clients nantais qui commandent en Allemagne
-                            Il y a deux clients à Besançon, on pourrait donc faire un groupe avec les 3 clients Nantais et ainsi diminuer les coûts de transports, financièrement comme écologiquement.</td>
-                    </tr>
-                    <tr>
-                        <th>Résultat</th>
-                        <td><img src="assets/image/4a.png" alt="Premier indicateur"></td>
-                    </tr>
-                    <tr>
-                        <th>SQL généré</th>
-                        <td>
-                            <code>
-                                SELECT DISTINCT Client.VilleCli, Client.SocieteCli, Fournisseur.Pays<br>
-                                FROM Client, Fournisseur<br>
-                                WHERE (((Client.VilleCli) Like "*antes")<br>
-                                AND (Not (Client.SocieteCli)="Verre à soi")<br>
-                                AND ((Fournisseur.Pays) Like "*llemagne"));<br>
-                            </code>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </article>
-            <article class="style_mission_p">
-                <table class="styled-table">
-                    <caption>2eme indicateur</caption>
-                    <thead>
-                    <tr>
-                        <th>Énoncé</th>
-                        <td> Certains clients n’ont jamais eu la remise la plus importante de 25%. Qui sont-ils ?</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th>Interprétation</th>
-                        <td> Pour fidéliser ces clients, ils seraient bien qu’ils aient aussi accès à cette grosse remise de 25%. On pourrait imaginer de leur envoyer des remises spéciales par mail etc</td>
-                    </tr>
-                    <tr>
-                        <th>Résultat</th>
-                        <td><img src="assets/image/4c.png" alt="Premier indicateur"></td>
-                    </tr>
-                    <tr>
-                        <th>SQL généré</th>
-                        <td>
-                            <code>
-                                SELECT DISTINCT Client.SocieteCli<br>
-                                FROM Client, DetailCommande<br>
-                                WHERE ((DetailCommande.Remise)<>0.25);<br>
-                            </code>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </article>
-        </section>
+            <section class=style_mission_generale>
+                <h3 class="themes">La Clientèle</h3>
+                <article class="style_mission_p">
+                    <table class="styled-table">
+                        <caption>1er indicateur</caption>
+                        <thead>
+                        <tr>
+                            <th>Énoncé</th>
+                            <td> Un client nantais Le verre à soi souhaite savoir quels autres clients nantais commandent aussi des produits en Allemagne pour envisager de futures livraisons groupées.</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th>Interprétation</th>
+                            <td> Cette requête montre les autres clients nantais qui commandent en Allemagne
+                                Il y a deux clients à Besançon, on pourrait donc faire un groupe avec les 3 clients Nantais et ainsi diminuer les coûts de transports, financièrement comme écologiquement.</td>
+                        </tr>
+                        <tr>
+                            <th>Résultat</th>
+                            <td><img src="assets/image/4a.png" alt="Premier indicateur"></td>
+                        </tr>
+                        <tr>
+                            <th>SQL généré</th>
+                            <td>
+                                <code>
+                                    SELECT DISTINCT Client.VilleCli, Client.SocieteCli, Fournisseur.Pays<br>
+                                    FROM Client, Fournisseur<br>
+                                    WHERE (((Client.VilleCli) Like "*antes")<br>
+                                    AND (Not (Client.SocieteCli)="Verre à soi")<br>
+                                    AND ((Fournisseur.Pays) Like "*llemagne"));<br>
+                                </code>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </article>
+                <article class="style_mission_p">
+                    <table class="styled-table">
+                        <caption>2eme indicateur</caption>
+                        <thead>
+                        <tr>
+                            <th>Énoncé</th>
+                            <td> Certains clients n’ont jamais eu la remise la plus importante de 25%. Qui sont-ils ?</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th>Interprétation</th>
+                            <td> Pour fidéliser ces clients, ils seraient bien qu’ils aient aussi accès à cette grosse remise de 25%. On pourrait imaginer de leur envoyer des remises spéciales par mail etc</td>
+                        </tr>
+                        <tr>
+                            <th>Résultat</th>
+                            <td><img src="assets/image/4c.png" alt="Premier indicateur"></td>
+                        </tr>
+                        <tr>
+                            <th>SQL généré</th>
+                            <td>
+                                <code>
+                                    SELECT DISTINCT Client.SocieteCli<br>
+                                    FROM Client, DetailCommande<br>
+                                    WHERE ((DetailCommande.Remise)<>0.25);<br>
+                                </code>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </article>
+            </section>
 
-        <section class=style_mission_generale>
-            <h3 class="themes">Indicateurs personnels</h3>
-            <article class="style_mission_p">
-                <table class="styled-table">
-                    <caption>Indicateur SAUL</caption>
-                    <thead>
-                    <tr>
-                        <th>Énoncé</th>
-                        <td>Récupérer les produits qui n’ont plus de stock ou très peu et ont été commandés (de 0 à 2 en unité de stockage).
-                            Cette requête aura pour intérêt de savoir quel produit n’est plus en stock, ou sera bientôt en rupture de stock, car avec une ou plusieurs commandes en cours. Ainsi, on pourra efficacement en racheter au fournisseur et garder un flux constant d’offres pour les clients.
-                        </td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th>Construction</th>
-                        <td> On prend dans le FROM DetailCommande qui va servir à JOIN les deux tableaux importants: Produit et Commande. On regarde ensuite quand la date d’envoi est inexistante, c’est à dire que la commande n’a pas encore été envoyé, et on regarde si le stockage est bien bas (en dessous de 2).
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Résultat</th>
-                        <td><img src="assets/image/saul.png" alt="Premier indicateur"></td>
-                    </tr>
-                    <tr>
-                        <th>SQL généré</th>
-                        <td>
-                            <code>
-                                SELECT DISTINCT P.NomProd, P.UniteStock<br>
-                                FROM (DetailCommande DC INNER JOIN Commande C on DC.NoCom=C.NoCom) INNER JOIN Produit P ON DC.RefProd=P.RefProd<br>
-                                WHERE (C.DateEnvoi IS NULL AND P.UniteStock <= 2)<br>
-                                ORDER BY P.UniteStock;<br>
+            <section class=style_mission_generale>
+                <h3 class="themes">Indicateurs personnels</h3>
+                <article class="style_mission_p">
+                    <table class="styled-table">
+                        <caption>Indicateur SAUL</caption>
+                        <thead>
+                        <tr>
+                            <th>Énoncé</th>
+                            <td>Récupérer les produits qui n’ont plus de stock ou très peu et ont été commandés (de 0 à 2 en unité de stockage).
+                                Cette requête aura pour intérêt de savoir quel produit n’est plus en stock, ou sera bientôt en rupture de stock, car avec une ou plusieurs commandes en cours. Ainsi, on pourra efficacement en racheter au fournisseur et garder un flux constant d’offres pour les clients.
+                            </td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th>Construction</th>
+                            <td> On prend dans le FROM DetailCommande qui va servir à JOIN les deux tableaux importants: Produit et Commande. On regarde ensuite quand la date d’envoi est inexistante, c’est à dire que la commande n’a pas encore été envoyé, et on regarde si le stockage est bien bas (en dessous de 2).
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Résultat</th>
+                            <td><img src="assets/image/saul.png" alt="Premier indicateur"></td>
+                        </tr>
+                        <tr>
+                            <th>SQL généré</th>
+                            <td>
+                                <code>
+                                    SELECT DISTINCT P.NomProd, P.UniteStock<br>
+                                    FROM (DetailCommande DC INNER JOIN Commande C on DC.NoCom=C.NoCom) INNER JOIN Produit P ON DC.RefProd=P.RefProd<br>
+                                    WHERE (C.DateEnvoi IS NULL AND P.UniteStock <= 2)<br>
+                                    ORDER BY P.UniteStock;<br>
 
-                            </code>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </article>
-            <article class="style_mission_p">
-                <table class="styled-table">
-                    <caption>Indicateur LEO</caption>
-                    <thead>
-                    <tr>
-                        <th>Énoncé</th>
-                        <td> Connaître quels sont les trois premiers produits les plus commandés par nos clients ?
-                            Cela nous permettra d’importer ces produits en plus grande quantité du ou des fournisseurs qui le vendent. Cela limitera une rupture de stock de ces produits puisque nous aurons préparé un plus grand stock de ces produits.
-                        </td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th>Construction</th>
-                        <td> Il faut compter le nombre de fois où un produit a été commandé dans la table DetailCommande. Puis trier en ordre décroissant et choisit les trois premiers.
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Résultat</th>
-                        <td><img src=assets/image/leo.png alt="Premier indicateur"></td>
-                    </tr>
-                    <tr>
-                        <th>SQL généré</th>
-                        <td>
-                            <code>
-                                SELECT TOP 3 Count(DetailCommande.RefProd) AS CompteDeRefProd, DetailCommande.RefProd, Produit.NomProd<br>
-                                FROM Produit INNER JOIN DetailCommande ON Produit.RefProd = DetailCommande.RefProd<br>
-                                GROUP BY DetailCommande.RefProd, Produit.NomProd<br>
-                                ORDER BY Count(DetailCommande.RefProd) DESC;<br>
+                                </code>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </article>
+                <article class="style_mission_p">
+                    <table class="styled-table">
+                        <caption>Indicateur LEO</caption>
+                        <thead>
+                        <tr>
+                            <th>Énoncé</th>
+                            <td> Connaître quels sont les trois premiers produits les plus commandés par nos clients ?
+                                Cela nous permettra d’importer ces produits en plus grande quantité du ou des fournisseurs qui le vendent. Cela limitera une rupture de stock de ces produits puisque nous aurons préparé un plus grand stock de ces produits.
+                            </td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th>Construction</th>
+                            <td> Il faut compter le nombre de fois où un produit a été commandé dans la table DetailCommande. Puis trier en ordre décroissant et choisit les trois premiers.
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Résultat</th>
+                            <td><img src=assets/image/leo.png alt="Premier indicateur"></td>
+                        </tr>
+                        <tr>
+                            <th>SQL généré</th>
+                            <td>
+                                <code>
+                                    SELECT TOP 3 Count(DetailCommande.RefProd) AS CompteDeRefProd, DetailCommande.RefProd, Produit.NomProd<br>
+                                    FROM Produit INNER JOIN DetailCommande ON Produit.RefProd = DetailCommande.RefProd<br>
+                                    GROUP BY DetailCommande.RefProd, Produit.NomProd<br>
+                                    ORDER BY Count(DetailCommande.RefProd) DESC;<br>
 
-                            </code>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </article>
-            <article class="style_mission_p">
-                <table class="styled-table">
-                    <caption>Indicateur MATEO</caption>
-                    <thead>
-                    <tr>
-                        <th>Énoncé</th>
-                        <td> Pour aider dans la recherche de méthodes favorables à l'environnement. On pourrait tenter de lister les produits ayant un pays d’origine qui possède des normes environnementales assez strictes (certains pays de l'Europe par exemple). On listera les produits qui sont les plus vendus.
-                            Ainsi, cela permettra de sélectionner les produits les plus vendus tout en prouvant le pays de provenance. Par conséquent, kdou montrera sa fiabilité et son sérieux vis à vis des  clients et de l’importance du respect de la nature pour l’entreprise.
+                                </code>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </article>
+                <article class="style_mission_p">
+                    <table class="styled-table">
+                        <caption>Indicateur MATEO</caption>
+                        <thead>
+                        <tr>
+                            <th>Énoncé</th>
+                            <td> Pour aider dans la recherche de méthodes favorables à l'environnement. On pourrait tenter de lister les produits ayant un pays d’origine qui possède des normes environnementales assez strictes (certains pays de l'Europe par exemple). On listera les produits qui sont les plus vendus.
+                                Ainsi, cela permettra de sélectionner les produits les plus vendus tout en prouvant le pays de provenance. Par conséquent, kdou montrera sa fiabilité et son sérieux vis à vis des  clients et de l’importance du respect de la nature pour l’entreprise.
 
-                        </td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th>Construction</th>
-                        <td> On renomme la somme des quantites commandés en quantitéVendues pour une meilleure visualisation<br>
-                            On effectue une jointure entre la table principale utilisée (Produit) avec Fournisseur et DetailCommande<br>
-                            On va mettre un IN, il va permettre d’éviter d’utiliser des AND car nous sommes en train de chercher dans une liste de pays<br>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Résultat</th>
-                        <td><img src="assets/image/mateo.png" alt="Premier indicateur"></td>
-                    </tr>
-                    <tr>
-                        <th>SQL généré</th>
-                        <td>
-                            <code>
-                                SELECT Produit.NomProd, Fournisseur.Pays, SUM(DetailCommande.QteCom) AS QuantiteVendue<br>
-                                FROM (Produit INNER JOIN Fournisseur ON Produit.NoFour = Fournisseur.NoFour) INNER JOIN DetailCommande ON Produit.RefProd = DetailCommande.RefProd<br>
-                                WHERE Fournisseur.Pays IN ('France', 'Allemagne', 'Suède', 'Norvège', 'Danemark')<br>
-                                GROUP BY Produit.NomProd, Fournisseur.Pays;
-                            </code>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </article>
-            <article class="style_mission_p">
-                <table class="styled-table">
-                    <caption>Indicateur GABRIEL</caption>
-                    <thead>
-                    <tr>
-                        <th>Énoncé</th>
-                        <td> La requête que je propose permet de voir les pays des fournisseurs ainsi que ceux des clients pour essayer de voir si on peut limiter les transports et donc moins polluer.
-                        </td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th>Construction</th>
-                        <td> On utilise un left join afin de prendre tous les pays des fournisseurs ainsi que tous ceux des clients sans rien omettre. L’utilisation de distinct va empêcher les doublons.
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Résultat</th>
-                        <td><img src="assets/image/gabriel.png" alt="Premier indicateur"></td>
-                    </tr>
-                    <tr>
-                        <th>SQL généré</th>
-                        <td>
-                            <code>
-                                SELECT DISTINCT Fournisseur.Pays, Client.Pays<br>
-                                FROM Fournisseur<br>
-                                LEFT JOIN Client ON Fournisseur.Pays = Client.Pays;<br>
-                            </code>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </article>
-        </section>
-    </main>
+                            </td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th>Construction</th>
+                            <td> On renomme la somme des quantites commandés en quantitéVendues pour une meilleure visualisation<br>
+                                On effectue une jointure entre la table principale utilisée (Produit) avec Fournisseur et DetailCommande<br>
+                                On va mettre un IN, il va permettre d’éviter d’utiliser des AND car nous sommes en train de chercher dans une liste de pays<br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Résultat</th>
+                            <td><img src="assets/image/mateo.png" alt="Premier indicateur"></td>
+                        </tr>
+                        <tr>
+                            <th>SQL généré</th>
+                            <td>
+                                <code>
+                                    SELECT Produit.NomProd, Fournisseur.Pays, SUM(DetailCommande.QteCom) AS QuantiteVendue<br>
+                                    FROM (Produit INNER JOIN Fournisseur ON Produit.NoFour = Fournisseur.NoFour) INNER JOIN DetailCommande ON Produit.RefProd = DetailCommande.RefProd<br>
+                                    WHERE Fournisseur.Pays IN ('France', 'Allemagne', 'Suède', 'Norvège', 'Danemark')<br>
+                                    GROUP BY Produit.NomProd, Fournisseur.Pays;
+                                </code>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </article>
+                <article class="style_mission_p">
+                    <table class="styled-table">
+                        <caption>Indicateur GABRIEL</caption>
+                        <thead>
+                        <tr>
+                            <th>Énoncé</th>
+                            <td> La requête que je propose permet de voir les pays des fournisseurs ainsi que ceux des clients pour essayer de voir si on peut limiter les transports et donc moins polluer.
+                            </td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th>Construction</th>
+                            <td> On utilise un left join afin de prendre tous les pays des fournisseurs ainsi que tous ceux des clients sans rien omettre. L’utilisation de distinct va empêcher les doublons.
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Résultat</th>
+                            <td><img src="assets/image/gabriel.png" alt="Premier indicateur"></td>
+                        </tr>
+                        <tr>
+                            <th>SQL généré</th>
+                            <td>
+                                <code>
+                                    SELECT DISTINCT Fournisseur.Pays, Client.Pays<br>
+                                    FROM Fournisseur<br>
+                                    LEFT JOIN Client ON Fournisseur.Pays = Client.Pays;<br>
+                                </code>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </article>
+            </section>
+        </main>
 
-    <footer>
-        <p>&copy; 2024 Rapport de mission KDou - Tous droits réservés</p>
-    </footer>
+        <footer>
+            <p>&copy; 2024 Rapport de mission KDou - Tous droits réservés</p>
+        </footer>
     </body>
 </html>

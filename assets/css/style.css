@@ -1,11 +1,11 @@
-:root {
+:root { /*définition de variable afin de simplifier l'utilisation de couleur dans le CSS*/
     --dark-blue: #2c3e50;
     --light-blue: #2980b9;
     --background-color: #ecf0f1;
     --text-color: #333;
     --hover-color: #3498db;
 }
-
+/* Style de base pour tout le document */
 html {
     margin: 0;
     padding: 0;
@@ -13,32 +13,34 @@ html {
 
 }
 
+/* Style pour En-tête de la page */
 body {
     font-family: Arial, sans-serif;
     background-color: var(--background-color);
     color: var(--text-color);
 }
 
+/* Style pour l'en-tête de la page */
 header {
     background-color: var(--dark-blue);
     color: white;
     padding: 1.5rem;
     text-align: center;
-    position: relative;
+    position: relative; /* Permet de positionner la logo par rapport à l'en-tête */
 }
 
 header h1 a {
     color: white;
-    text-decoration: none;
+    text-decoration: none; /* Suppression du soulignement des liens */
     font-size: 2.5rem;
 }
 
-.logo {
-    position: absolute;
+.logo { /*style du logo dans l'en-tête*/
+    position: absolute; /* Permet de positionner le logo par rapport à l'en-tête */
     right: 1rem;
     top: 10%;
     width: 100px;
-    height: auto;
+    height: auto; /* Conserve les proportions de l'image */
 }
 
 nav {
@@ -47,21 +49,21 @@ nav {
     background-color: var(--light-blue);
 }
 
-.menu {
+.menu { /* Style pour le menu */
     list-style-type: none;
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    gap: 2rem; /* Espacement */
 }
 
 .menu li a {
     color: white;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: bold; /* Texte en gras */
 }
 
 .menu li a:hover {
-    color: var(--hover-color);
+    color: var(--hover-color); /* Changement de couleur au survol aavec la souris */
 }
 
 .introduction {
@@ -91,7 +93,7 @@ nav {
     font-size: 30px;
 }
 
-.mission img {
+.mission img { /* Style des images dans les missions */
     width: 50%;
     border-radius: 8px;
 }
@@ -103,22 +105,24 @@ nav {
 
 
 .mission:hover {
-    transform: rotate3d(1,1,1,2deg);
-    transition-duration: 1.5s;
-}
+    transform: rotate3d(1,1,1,2deg);/*Mouvement l'animation*/
+    transition-duration: 1.5s; /*Durée de l'animation*/
+} /*Animations des cases dans l'accueil*/
 
+/* Pied de page */
 footer {
     background-color: var(--dark-blue);
     color: white;
     text-align: center;
     align-content: center;
     position: relative;
-    bottom: 0;
+    bottom: 0; /* Mettre tout en bas */
     width: 100%;
-    height: 2.5rem;
+    height: 3.5rem;
     margin-bottom: 50px;
 }
 
+/* Styles pour les petits écrans */
 @media screen and (max-width: 768px) {
     .logo {
         position: absolute;
@@ -130,7 +134,7 @@ footer {
 
     .menu {
         font-size: 0.8rem;
-        flex-wrap: wrap;
+        flex-wrap: wrap; /*Retour à la ligne lors de depassement d'ecran*/
     }
 }
 
