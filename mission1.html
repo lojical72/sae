@@ -1,293 +1,54 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Mission 1</title>
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-</head>
-<body class="grid">
-<header>
-    <h1><a href="index.html">RAPPORT MISSION 1</a></h1>
-    <img src="assets/image/KDOU2.png" alt="Logo KDOU" class="logo">
-</header>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Mission 1</title>
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    </head>
+    <body class="grid">
+        <header>
+            <h1><a href="index.html">RAPPORT MISSION 1</a></h1>
+            <img src="assets/image/KDOU2.png" alt="Logo KDOU" class="logo">
+        </header>
 
-<nav>
-    <ul class="menu">
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="mission1.html">Mission 1</a></li>
-        <li><a href="mission2.html">Mission 2</a></li>
-        <li><a href="mission3.html">Mission 3</a></li>
-        <li><a href="conclusion.html">Conclusion</a></li>
-    </ul>
-</nav>
+        <nav>
+            <ul class="menu">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="mission1.html">Mission 1</a></li>
+                <li><a href="mission2.html">Mission 2</a></li>
+                <li><a href="mission3.html">Mission 3</a></li>
+                <li><a href="conclusion.html">Conclusion</a></li>
+            </ul>
+        </nav>
 
-<main>
-    <section>
-        <article class="introduction">
-            <h2>Présentation</h2>
-            <p>Bienvenue sur la mission 1. <br>
-                L’objectif de cette mission est de commencer à manier excel en répondant aux différentes questions sur l'entreprise fictive Kdou
-            </p>
-        </article>
-    </section>
+        <main>
+            <section>
+                <article class="introduction">
+                    <h2>Présentation</h2>
+                    <p>Bienvenue sur la mission 1. <br>
+                        L’objectif de cette mission est de commencer à manier excel en répondant aux différentes questions sur l'entreprise fictive Kdou
+                    </p>
+                </article>
+            </section>
 
-    <section class=style_mission_generale>
-        <article class="style_mission_p">
-            <table class="styled-table">
-                <caption>1er Indicateur</caption>
-                <thead>
-                <tr>
-                    <th>Énoncé</th>
-                    <td>Dans chaque onglet, identifiez quelles sont les colonnes correspondant ou pouvant correspondre à des clés primaires.</td>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <th>Résultat</th>
-                    <td><img src="assets/image/Mission_1_1.png" alt="Réponse 1ère question"></td>
-                </tr>
-                </tbody>
-            </table>
-        </article>
-    </section>
+            <section class=style_mission_generale>
+                <p>Notre équipe étudie et exploite les données de KDou pour permettre de les aider. Les données se trouvent dans un tableur Excel.</p>
+                <p>Nous avons d'abord étudié les données avec la clé primaire d'une table. Si nous voulons rechercher des informations sur un fournisseur et de ses produits, en prend sa clé primaire puis de regarder tous les produits avec qui ont la clé primaire du fournisseur.
+                    Cela prenait beaucoup de temps puisque que les clés primaires n'était pas forcément trié dans la base de données donc une information était éloigné d'une autre information importante.
+                    Cependant sur Excel, on peut filtrer les données.<br>
+                    <img src="assets/image/Filtres.png" alt="Filtres Excel"><!--(mettre une image des différents filtres possibles)-->
+                    <br><br>Grâce aux filtres, la recherche de données est devenu plus simple et rapide.<br>
+                    <img src="assets/image/Filtre CHOPS.png" alt="Filtre"><!--(mettre une image d'un filtre active: exemple mettre la clé primaire d'un client comme filtres pour les commandes si on veut chercher toutes ses commandes)-->
+                    <br><br>Nous conseillons à l'entreprise KDou de corriger les fautes d'orthographe dans les tables, une uniformisation des noms comme représentant<br>
+                    <img src="assets/image/Représentant faute.png" alt="Erreur faute frappe"><!--(représentant avait deux écritures differentes mettre une image de cette exemple)-->
+                    <br><br>et la clarification du graphique qui était fournis.<br>
+                    <img src="assets/image/Graphique.png" alt="Erreur données"><!--(nommer l’axe des ordonnées et des abscisses et enlever les nombres à virgule dans les ordonnées)--></p>
+            </section>
+        </main>
 
-    <section class=style_mission_generale>
-        <article class="style_mission_p">
-            <table class="styled-table">
-                <caption>2ème Indicateur</caption>
-                <thead>
-                <tr>
-                    <th>Énoncé</th>
-                    <td>Dans chaque onglet, identifiez quelles sont les colonnes correspondant à des clés étrangères.</td>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <th>Résultat</th>
-                    <td><img src="assets/image/Mission1_2.png" alt="Réponse 2ème question"></td>
-                </tr>
-                </tbody>
-            </table>
-        </article>
-    </section>
-
-    <section class=style_mission_generale>
-        <article class="style_mission_p">
-            <table class="styled-table">
-                <caption>3ème Indicateur</caption>
-                <thead>
-                <tr>
-                    <th>Énoncé</th>
-                    <td>Pour vous entrainer à naviguer dans ces données, on vous demande d’essayer de répondre  manuellement aux questions suivantes en étudiant l’extrait fourni : </td>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <th>Données</th>    <!--////PARTIE A CORRIGER\\\\-->
-                    <td><img src="assets/image/Fournisseurs.png" alt="Fournisseurs"></td>
-                    <!--<td><img src="assets/image/Clients.png" alt="Clients"></td>
-                    <td><img src="assets/image/Produits.png" alt="Produits"></td>
-                    <td><img src="assets/image/Catégories.png" alt="Catégories"></td>
-                    <td><img src="assets/image/Commandes.png" alt="Commandes"></td>
-                    <td><img src="assets/image/Commandes_Details.png" alt="Commandes Détails"></td>-->
-                </tr>
-                <tr>
-                    <th>Question 1</th>
-                    <td>Combien y a-t-il de clients nantais ?</td>
-                </tr>
-                <tr>
-                    <th>Résultat</th>
-                    <td>Il y a 3 clients nantais.</td>
-                </tr>
-                <tr>
-                    <th>Question 2</th>
-                    <td>Combien y a-t-il de clients de région parisienne ?</td>
-                </tr>
-                <tr>
-                    <th>Résultat</th>
-                    <td>Il y a 3 clients en région parisienne.</td>
-                </tr>
-                <tr>
-                    <th>Question 3</th>
-                    <td>Donnez l’adresse du fournisseur Marie Delamare ?</td>
-                </tr>
-                <tr>
-                    <th>Résultat</th>
-                    <td>L’adresse de Marie Delamare est 22, rue H.Voiron, Montceau, France.</td>
-                </tr>
-                <tr>
-                    <th>Question 4</th>
-                    <td>Combien y a-t-il de fournisseurs en Amérique du Nord ?</td>
-                </tr>
-                <tr>
-                    <th>Résultat</th>
-                    <td>Il y a 7 fournisseurs en Amérique du Nord.</td>
-                </tr>
-                <tr>
-                    <th>Question 5</th>
-                    <td>Combien y a-t-il de pays dans l’UE autre que la France ?</td>
-                </tr>
-                <tr>
-                    <th>Résultat</th>
-                    <td>Il y a 8 pays de l’UE hors France.</td>
-                </tr>
-                <tr>
-                    <th>Question 6</th>
-                    <td>Quelle est la fonction du contact fournisseur Ma maison ?</td>
-                </tr>
-                <tr>
-                    <th>Résultat</th>
-                    <td>La fonction de la société Ma Maison est directeur du marketing.</td>
-                </tr>
-                <tr>
-                    <th>Question 7</th>
-                    <td>Quelle est la fonction de contact fournisseur la plus représentée ?</td>
-                </tr>
-                <tr>
-                    <th>Résultat</th>
-                    <td>Représentant(e) est la fonction de contact la plus représentée.</td>
-                </tr>
-                <tr>
-                    <th>Question 8</th>
-                    <td>Quels produits (nom, catégorie et prix) a commandé le client Mikal Pavbo ?</td>
-                </tr>
-                <tr>
-                    <th>Résultat</th>
-                    <td>Mikal Pavbo n’existe pas, mais voici les produit commandé par Mikal Torin:<br>
-                        <br>-  Aniseed Syrup (condiments) 120 €<br>
-                        -  NuNuCa Nuß-Nougat-Creme (desserts) 499,80 € <br>
-                        -  Boston Crab Meat (poissons et fruits de mer) 1024 €<br>
-                        -  Singaporean Hokkien Fried Mee (pâtes et céréales) 56 €<br>
-                        -  Raclette Courdavault (produits laitiers) 1056 €<br>
-                        -  Outback Lager (boissons) 210 €<br>
-                        -  Mozzarella di Giovanni (produits laitiers) 69,60 €<br>
-                        -  Röd Kaviar (poissons et fruits de mer) 150 € <br>
-                        -  Lakkalikööri (boissons) 540 €</td>
-                </tr>
-                <tr>
-                    <th>Question 9</th>
-                    <td>Quelles sont les dates des commandes du client MORIU ?</td>
-                </tr>
-                <tr>
-                    <th>Résultat</th>
-                    <td>Le client MORIU n’existe pas mais le client MORJU a comme dates de commandes :<br>
-                        <br>-  03/12/2020<br>
-                        -  06/12/2020<br>
-                        -  27/12/2020<br>
-                        -  17/01/2021<br>
-                        -  20/02/2021<br>
-                        -  07/03/2021<br>
-                        -  11/03/2021<br>
-                        -  24/03/2021<br>
-                        -  24/04/2021<br>
-                        -  16/06/2021<br>
-                        -  30/06/2021</td>
-                </tr>
-                <tr>
-                    <th>Question 10</th>
-                    <td>Donnez l’offre de produits suédois.</td>
-                </tr>
-                <tr>
-                    <th>Résultat</th>
-                    <td>L’offre de produits suédois est composé de :<br>
-                        <br>-  12 cartons (250g) de Tunnbröd (pâtes et céréales) à 7,50 euros<br>
-                        -  10 cartons (250g) de knäckebrod Kala (pâtes et céréales) à 7,50 euros<br>
-                        -  10 boites (8 onces) de Dea Surströmming (poissons et fruits de mer) à 120 euros<br>
-                        -  4 pièces de Kanelbullar Stock (desserts) à 43,25 euros</td>
-                </tr>
-                <tr>
-                    <th>Question 11</th>
-                    <td>Quelles sont les catégories de produit vendues par les fournisseurs Singapouriens ?</td>
-                </tr>
-                <tr>
-                    <th>Résultat</th>
-                    <td>Les fournisseurs singapouriens vendent des boissons et des condiments.</td>
-                </tr>
-                <tr>
-                    <th>Question 12</th>
-                    <td>Est-ce qu’il y a dans la clientèle des clients qui n’ont pas passé de commande ?</td>
-                </tr>
-
-                <tr>
-                    <th>Résultat</th>
-                    <td>Les clients n'ayant pas encore passé commmande sont :<br>
-                        <br>-  L’Atelier des Augustins (ATAUG)<br>
-                        -  L’Auberge de l’île Barbe (AUBBA)<br>
-                        -  Le 7e continent (CONTIG)<br>
-                        -  Riz de Caen (GOURL)<br>
-                        -  La Table du Gourmet (GOUTA)<br>
-                        -  Le Petit Hôtel du Grand Large (HOTLA)</td>
-                </tr>
-
-                <tr>
-                    <th>Question 13</th>
-                    <td>Comment sont conditionnés les produits ?</td>
-                </tr>
-
-                <tr>
-                    <th>Résultat</th>
-                    <td>Les produits sont conditionnés soit dans des boîtes, des bouteilles, des pots, des sacs, des cartons, des canettes, des verres ou des plaquettes.<br>
-                        De plus la quantité est précisée et la masse aussi.</td>
-                </tr>
-                </tbody>
-            </table>
-        </article>
-    </section>
-
-    <section class=style_mission_generale>
-        <article class="style_mission_p">
-            <table class="styled-table">
-                <caption>4ème Indicateur</caption>
-                <thead>
-                <tr>
-                    <th>Énoncé</th>
-                    <td>On espère avoir des données de bonne qualité mais certaines analyses ont déjà mis en évidence certains problèmes. Regardez ces analyses, regardez également si dans certaines colonnes des différentes tables proposées, on peut relever
-                        des incohérences ou des choix discutables, repérez et expliquez tout ce qui vous paraît incohérent.</td>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <th>Données</th>
-                    <td><img src="assets/image/Annexe.png" alt="Annexe"></td>
-                </tr>
-                <tr>
-                    <th>Résultats</th>
-                    <td> On peut remplacer l’attribut fournisseur par Nb.fournisseur pour préciser que c’est le nombre de fournisseurs dans cette ville et dans ce pays. Puis dans la table répartition des fournisseurs par type de contact<br>
-                        <br>Dans la table répartition des fournisseurs par ville, on peut voir deux fois la ville de Sao Paulo car il y a un écrit avec un accent et l’autre non, cela conduit à deux tuples différents dans la table. Il y a aussi 2 fois Royaume-Uni un avec un tiret et un sans.<br>
-                        Il y a 2 Suède un avec é et un avec è. Il y a 2 fois Australie, l'une avec un ‘e’ à la fin et un autre avec un ‘a’ à la fin. On peut voir que la fonction représentante existe en deux fois. L’un a des parenthèses qui entourent la lettre  “e” et l’autre non. De plus, la fonction Chef des ventes apparaît en deux fois à cause d’un espace en plus entre “des” et “ventes”.<br>
-                        <br>La réclamation client manque de détails spécifiques, ce qui complique l’analyse.<br>
-                        <br>Peu de responsables de zone, mauvaise répartition des fournisseurs en France.
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </article>
-    </section>
-
-    <section class=style_mission_generale>
-        <article class="style_mission_p">
-            <table class="styled-table">
-                <caption>5ème Indicateur</caption>
-                <thead>
-                <tr>
-                    <th>Énoncé</th>
-                    <td>Avez-vous des idées d’amélioration de l’organisation de ces données ?</td>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <th>Résultats</th>
-                    <td>Corriger les fautes d'orthographe dans les tables. Uniformisation des noms comme représentant. Clarification du graphique (nommer l’axe des ordonnées et des abscisses et enlever les nombres à virgule dans les ordonnées).</td>
-                </tr>
-                </tbody>
-            </table>
-        </article>
-    </section>
-</main>
-
-<footer>
-    <p>&copy; 2024 Rapport de mission KDou - Tous droits réservés</p>
-</footer>
-</body>
+        <footer>
+            <p>&copy; 2024 Rapport de mission KDou - Tous droits réservés</p>
+        </footer>
+    </body>
 </html>
